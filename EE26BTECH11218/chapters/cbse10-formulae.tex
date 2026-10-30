@@ -1,0 +1,172 @@
+\begin{enumerate}[label=\thesubsection.\arabic*, ref=\thesubsection.\theenumi,itemsep=1.5em]
+
+\item (Line) The normal form of the equation of a line is
+\begin{align}
+\vec{n}^{\top}\vec{x} = c
+\label{eq:EE26BTECH11218-cb-line-normal}
+\end{align}
+and its parametric form is
+\begin{align}
+\vec{x} = \vec{h} + \kappa \vec{m}, \quad \kappa \in \mathbb{R},
+\label{eq:EE26BTECH11218-cb-line-param}
+\end{align}
+where
+\begin{align}
+\vec{m}^{\top}\vec{n} = 0, \quad \vec{n}^{\top}\vec{h} = c
+\end{align}
+A point $\vec{x}_0$ lies on the line iff $\vec{n}^{\top}\vec{x}_0 = c$. The intersection with the $y$-axis is obtained by setting $\vec{e}_1^{\top}\vec{x} = 0$.
+
+\item (Circle) A circle with centre $\vec{c}$ and radius $r$ is the conic
+\begin{align}
+\vec{x}^{\top}\vec{V}\vec{x} + 2\vec{u}^{\top}\vec{x} + f = 0
+\label{eq:EE26BTECH11218-cb-conic}
+\end{align}
+with
+\begin{align}
+\vec{V} = \vec{I}, \quad \vec{u} = -\vec{c}, \quad f = \norm{\vec{c}}^2 - r^2
+\label{eq:EE26BTECH11218-cb-circle}
+\end{align}
+\solution A point $\vec{x}$ is at distance $r$ from $\vec{c}$ iff
+\begin{align}
+\norm{\vec{x}-\vec{c}}^2 = \vec{x}^{\top}\vec{x} - 2\vec{c}^{\top}\vec{x} + \norm{\vec{c}}^2 - r^2 = 0
+\end{align}
+which yields \eqref{eq:EE26BTECH11218-cb-circle} on comparing with \eqref{eq:EE26BTECH11218-cb-conic}.
+
+\item (Line-Conic Intersection, Chord and Tangent) Let $g\brak{\vec{x}} = \vec{x}^{\top}\vec{V}\vec{x} + 2\vec{u}^{\top}\vec{x} + f$. The line \eqref{eq:EE26BTECH11218-cb-line-param} meets the conic \eqref{eq:EE26BTECH11218-cb-conic} at $\vec{x}_i = \vec{h} + \kappa_i \vec{m}$, where
+\begin{align}
+\kappa_i = \frac{-\vec{m}^{\top}\brak{\vec{V}\vec{h}+\vec{u}} \pm \sqrt{\Delta}}{\vec{m}^{\top}\vec{V}\vec{m}}, \quad
+\Delta = \sbrak{\vec{m}^{\top}\brak{\vec{V}\vec{h}+\vec{u}}}^2 - g\brak{\vec{h}}\brak{\vec{m}^{\top}\vec{V}\vec{m}}
+\label{eq:EE26BTECH11218-cb-kappa}
+\end{align}
+The length of the chord and the tangency condition are
+\begin{align}
+\norm{\vec{x}_1-\vec{x}_2} = \abs{\kappa_1-\kappa_2}\norm{\vec{m}} = \frac{2\sqrt{\Delta}}{\abs{\vec{m}^{\top}\vec{V}\vec{m}}}\norm{\vec{m}},
+\qquad
+\text{tangent} \iff \Delta = 0
+\label{eq:EE26BTECH11218-cb-chord}
+\end{align}
+\solution Substituting $\vec{x} = \vec{h}+\kappa\vec{m}$ in $g\brak{\vec{x}}=0$,
+\begin{align}
+\brak{\vec{m}^{\top}\vec{V}\vec{m}}\kappa^2 + 2\vec{m}^{\top}\brak{\vec{V}\vec{h}+\vec{u}}\kappa + g\brak{\vec{h}} = 0
+\end{align}
+whose roots are \eqref{eq:EE26BTECH11218-cb-kappa}. The two points coincide (the line touches the conic) iff the discriminant vanishes, and $\vec{x}_1-\vec{x}_2 = \brak{\kappa_1-\kappa_2}\vec{m}$ gives \eqref{eq:EE26BTECH11218-cb-chord}.
+
+\item (Angle between vectors, Tangent and Radius) The angle $\theta$ between $\vec{a}$ and $\vec{b}$ is
+\begin{align}
+\cos\theta = \frac{\vec{a}^{\top}\vec{b}}{\norm{\vec{a}}\norm{\vec{b}}}
+\label{eq:EE26BTECH11218-cb-angle}
+\end{align}
+If a line $\vec{x}=\vec{P}+\kappa\vec{m}$ is tangent to a circle with centre $\vec{O}$ at the point $\vec{P}$ on the circle, then
+\begin{align}
+\vec{m}^{\top}\brak{\vec{P}-\vec{O}} = 0
+\label{eq:EE26BTECH11218-cb-tan-radius}
+\end{align}
+\solution From \eqref{eq:EE26BTECH11218-cb-chord} with $\vec{V}=\vec{I}$, $\vec{u}=-\vec{O}$, $\vec{h}=\vec{P}$ and $g\brak{\vec{P}}=0$ (since $\vec{P}$ is on the circle), $\Delta = \sbrak{\vec{m}^{\top}\brak{\vec{P}-\vec{O}}}^2 = 0$, yielding \eqref{eq:EE26BTECH11218-cb-tan-radius}.
+
+\item (System of Linear Equations) The pair of lines $a_1x+b_1y+c_1=0$, $a_2x+b_2y+c_2=0$ is the matrix equation
+\begin{align}
+\vec{A}\vec{x} = \vec{b}, \quad \vec{A} = \myvec{a_1 & b_1 \\ a_2 & b_2}, \quad \vec{b} = \myvec{-c_1 \\ -c_2}
+\label{eq:EE26BTECH11218-cb-linsys}
+\end{align}
+It is consistent iff $\rank\brak{\vec{A}} = \rank\brak{\sbrak{\vec{A}\mid\vec{b}}}$. Hence (taking $a_2,b_2,c_2\ne0$ in the ratios)
+\begin{align}
+\mydet{\vec{A}} \ne 0 \iff \frac{a_1}{a_2} \ne \frac{b_1}{b_2} &\implies \text{intersecting} \\
+\frac{a_1}{a_2} = \frac{b_1}{b_2} = \frac{c_1}{c_2} &\implies \rank\brak{\vec{A}} = \rank\brak{\sbrak{\vec{A}\mid\vec{b}}} = 1\ \text{(coincident)} \\
+\frac{a_1}{a_2} = \frac{b_1}{b_2} \ne \frac{c_1}{c_2} &\implies \rank\brak{\vec{A}} < \rank\brak{\sbrak{\vec{A}\mid\vec{b}}} \text{ (parallel)}
+\label{eq:EE26BTECH11218-cb-rank-cases}
+\end{align}
+where the ratios are read as cross-multiplied products if a denominator is zero.
+\solution $\mydet{\vec{A}} = a_1b_2 - a_2b_1 \ne 0$ iff the rows (the normals) are linearly independent, which is $\frac{a_1}{a_2}\ne\frac{b_1}{b_2}$. If the second row of $\vec{A}$ is $\lambda$ times the first, then $\rank\brak{\vec{A}}=1$, and the last row of the augmented matrix after $R_2 \to R_2-\lambda R_1$ is $\myvec{0 & 0 & b_2-\lambda b_1}$, which is zero iff the constants are in the same ratio.
+
+\item (Uniform Sample Space) For $\Omega$ with equally likely outcomes and an event $E\subseteq\Omega$,
+\begin{align}
+\pr{E} = \frac{\abs{E}}{\abs{\Omega}}, \quad \pr{E^{c}} = 1-\pr{E}, \quad
+\pr{A\mid B} = \frac{\pr{AB}}{\pr{B}}
+\label{eq:EE26BTECH11218-cb-prob}
+\end{align}
+The number of multiples of both $a$ and $b$ in $\cbrak{1,2,\dots,N}$ is
+\begin{align}
+\left\lfloor\frac{N}{\operatorname{lcm}\brak{a,b}}\right\rfloor
+\label{eq:EE26BTECH11218-cb-lcm}
+\end{align}
+and the number of outcomes when $k$ dice are thrown is
+\begin{align}
+\sbrak{\brak{x+x^2+\cdots+x^6}^k}_{x=1} = 6^k
+\label{eq:EE26BTECH11218-cb-dice-count}
+\end{align}
+\solution The coefficient of $x^n$ in $\brak{x+\cdots+x^6}^k$ is the number of outcomes of the $k$ dice with sum $n$, since multiplying generating functions is the discrete convolution of the counts. Setting $x=1$ adds up the counts of all sums, giving \eqref{eq:EE26BTECH11218-cb-dice-count}. A number is a multiple of $a$ and $b$ iff it is a multiple of $\operatorname{lcm}\brak{a,b}$, which gives \eqref{eq:EE26BTECH11218-cb-lcm}.
+
+\item (Grouped Data: Mode and Median) Let the classes be $\sbrak{l_i, l_i+h}$ with frequencies $f_i$, $N=\sum_i f_i$ and cumulative frequency $F_i = \sum_{j\le i} f_j$. If $\sbrak{l,l+h}$ is the modal class with frequency $f_1$, and $f_0$, $f_2$ are the frequencies of the preceding and succeeding classes,
+\begin{align}
+\text{Mode} = l + \frac{f_1-f_0}{2f_1-f_0-f_2}\,h
+\label{eq:EE26BTECH11218-cb-mode}
+\end{align}
+If $\sbrak{l,l+h}$ is the class with $F_{k-1} < \frac{N}{2} \le F_k$ and frequency $f_k$,
+\begin{align}
+\text{Median} = l + \frac{\frac{N}{2}-F_{k-1}}{f_k}\,h
+\label{eq:EE26BTECH11218-cb-median}
+\end{align}
+\solution On the histogram, join the top-right corner of the preceding bar to the top-right corner of the modal bar, and the top-left corner of the modal bar to the top-left corner of the succeeding bar. With $t = \frac{x-l}{h}$ the two lines are
+\begin{align}
+y = f_0 + \brak{f_1-f_0}t, \qquad y = f_1 + \brak{f_2-f_1}t
+\end{align}
+Equating them, $t = \frac{f_1-f_0}{2f_1-f_0-f_2}$, and $x = l + th$ is \eqref{eq:EE26BTECH11218-cb-mode}. For the median, the ogive (cumulative frequency) is piecewise linear, and the median solves $F\brak{x}=\frac{N}{2}$. On the class $\sbrak{l,l+h}$, $F\brak{x} = F_{k-1} + f_k\frac{x-l}{h}$, which gives \eqref{eq:EE26BTECH11218-cb-median}.
+
+\item (Incircle of a Triangle) Let $a,b,c$ be the sides opposite $\vec{A},\vec{B},\vec{C}$, $s=\frac{a+b+c}{2}$ and $\Delta$ the area. The incentre $\vec{I}$ and inradius $r$ are
+\begin{align}
+\vec{I} = \frac{a\vec{A}+b\vec{B}+c\vec{C}}{a+b+c}, \qquad r = \frac{\Delta}{s}
+\label{eq:EE26BTECH11218-cb-incircle}
+\end{align}
+For a right angle at $\vec{B}$ (legs $a$, $c$, hypotenuse $b$),
+\begin{align}
+r = \frac{a+c-b}{2}
+\label{eq:EE26BTECH11218-cb-incircle-right}
+\end{align}
+Equivalently, with $\vec{n}_i^{\top}\vec{x}=c_i$ the three sides in terms of inward unit normals, $\brak{\vec{I},r}$ solves the linear system
+\begin{align}
+\vec{n}_i^{\top}\vec{I} - r = c_i, \quad i = 1,2,3
+\label{eq:EE26BTECH11218-cb-incircle-sys}
+\end{align}
+\solution Joining $\vec{I}$ to the vertices splits the triangle into three triangles of height $r$ on the bases $a,b,c$, so $\Delta = \frac{1}{2}r\brak{a+b+c} = rs$. For a right angle at $\vec{B}$ the two tangent segments from $\vec{B}$ equal $r$, and those from $\vec{A}$, $\vec{C}$ are $c-r$ and $a-r$, so $b = \brak{c-r}+\brak{a-r}$, giving \eqref{eq:EE26BTECH11218-cb-incircle-right}. The signed distance of $\vec{I}$ from the line $\vec{n}_i^{\top}\vec{x}=c_i$ is $\vec{n}_i^{\top}\vec{I}-c_i = r$ for each side, giving \eqref{eq:EE26BTECH11218-cb-incircle-sys}.
+
+\item (Polynomial Division and Remainder Theorem) For polynomials $f$ and $g\ne0$ there are unique $q$ and $r$ with
+\begin{align}
+f\brak{x} = q\brak{x}g\brak{x} + r\brak{x}, \quad \deg r < \deg g
+\label{eq:EE26BTECH11218-cb-division}
+\end{align}
+If $\alpha$ is a (possibly complex) root of $g$, then
+\begin{align}
+r\brak{\alpha} = f\brak{\alpha}
+\label{eq:EE26BTECH11218-cb-remainder}
+\end{align}
+\solution Writing the coefficients of $q$ and $r$ as unknowns, \eqref{eq:EE26BTECH11218-cb-division} is a linear system (a convolution matrix acting on the coefficients of $q$, plus the coefficients of $r$) with a unique solution. Substituting $x=\alpha$ with $g\brak{\alpha}=0$ gives \eqref{eq:EE26BTECH11218-cb-remainder}. If $\deg g = 2$ with distinct roots $\alpha_1,\alpha_2$, then $r\brak{x}=r_1x+r_0$ is the line through $\brak{\alpha_i, f\brak{\alpha_i}}$.
+
+\item (Volume Flow Rate) If a fluid moves with uniform speed $v$ normal to a cross-section $S$, the volume flow rate and the volume in time $T$ are
+\begin{align}
+Q = \iint_{S} v\,dA = v\pi R^2, \qquad V = \int_{0}^{T} Q\,dt = QT
+\label{eq:EE26BTECH11218-cb-flux}
+\end{align}
+\solution For a circular cross-section of radius $R$, in polar coordinates
+\begin{align}
+\iint_S v\,dA = \int_0^{2\pi}\int_0^R v\rho\,d\rho\,d\theta = v\cdot 2\pi\cdot\frac{R^2}{2} = v\pi R^2
+\end{align}
+Also, $1\text{ L} = 1000\text{ cm}^3$.
+
+\item (Angle of Depression and Uniform Motion) An observer at height $h$ above the ground sees an object at horizontal distance $x$ at an angle of depression $\theta$, where
+\begin{align}
+\tan\theta = \frac{h}{x} \iff x = h\cot\theta
+\label{eq:EE26BTECH11218-cb-depression}
+\end{align}
+If the object moves towards the base with uniform speed $v$,
+\begin{align}
+x\brak{t} = x_0 - vt
+\label{eq:EE26BTECH11218-cb-uniform}
+\end{align}
+Two observations $x\brak{t_1}=x_1$, $x\brak{t_2}=x_2$ give the linear system
+\begin{align}
+\myvec{1 & -t_1 \\ 1 & -t_2}\myvec{x_0 \\ v} = \myvec{x_1 \\ x_2}
+\label{eq:EE26BTECH11218-cb-uniform-sys}
+\end{align}
+and the object reaches the base when $x\brak{t}=0$.
+\solution The line of sight from the eye to the object makes a right triangle with the vertical of length $h$ and the ground distance $x$, with the angle at the object equal to the angle of depression, giving \eqref{eq:EE26BTECH11218-cb-depression}.
+\end{enumerate}

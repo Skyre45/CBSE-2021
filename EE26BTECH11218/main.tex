@@ -1,0 +1,82 @@
+\documentclass[journal]{IEEEtran}
+\usepackage[a5paper, margin=10mm]{geometry}
+%\usepackage{lmodern} % Ensure lmodern is loaded for pdflatex
+\usepackage{tfrupee} % Include tfrupee package
+
+
+\setlength{\headheight}{1cm} % Set the height of the header box
+\setlength{\headsep}{0mm}     % Set the distance between the header box and the top of the text
+
+
+%\usepackage[a5paper, top=10mm, bottom=10mm, left=10mm, right=10mm]{geometry}
+
+%
+\usepackage{gvv-book}
+\usepackage{gvv}
+\raggedbottom
+
+%\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linktoc=all, % whole TOC line (title and page number) is a clickable link
+    urlcolor=black % Changes text color instead of placing a box around it
+}
+\usepackage{amsfonts}
+\makeindex
+
+\newcommand{\cbxiiyear}{2021}
+\begin{document}
+\bibliographystyle{IEEEtran}
+\onecolumn
+
+
+\title{
+	%\begin{flushleft}
+	\begin{center}
+	%MATRICES \\ In Geometry
+	Math for EE
+	\\
+\rule{0.4\columnwidth}{0.4pt}
+%\end{flushleft}
+\end{center}
+}
+% \author{
+% \vspace{11cm}
+% 	\begin{flushleft}
+% 	\begin{center}
+% \includegraphics[width=0.2\columnwidth]{figs/logo.jpg}
+% \\
+% 		{	\huge G. V. V. Sharma}
+% 	\end{center}
+% 	\end{flushleft}
+% \IEEEpubid{\makebox[\columnwidth]{978-1-7281-5966-1/20/\$31.00 ©2020 IEEE \hfill} \hspace{\columnsep}\makebox[\columnwidth]{ }}
+% }
+% \maketitle 
+
+\tableofcontents
+
+\newpage
+%\twocolumn
+\onecolumn
+
+
+%\renewcommand{\theequation}{\theenumi}
+\numberwithin{equation}{enumi}
+\numberwithin{figure}{enumi}
+%\renewcommand{\thefigure}{\theenumi}
+\renewcommand{\thetable}{\theenumi}
+
+\section{CBSE X 2021}
+\subsection{Formulae}
+\input{chapters/cbse10-formulae.tex}
+\newpage
+\subsection{Problems}
+\input{chapters/cbse10-problems.tex}
+\newpage
+\section{CBSE XII \cbxiiyear}
+\subsection{Formulae}
+\input{chapters/cbse12-formulae.tex}
+\newpage
+\subsection{Problems}
+\input{chapters/cbse12-problems.tex}
+\end{document}

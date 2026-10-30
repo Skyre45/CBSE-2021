@@ -1,0 +1,169 @@
+\begin{enumerate}[label=\thesubsection.\arabic*, ref=\thesubsection.\theenumi,itemsep=1.5em]
+
+\item (Independent Events and Sum of Random Variables) If $X$ and $Y$ are independent, that is, the events $\cbrak{X=x}$ and $\cbrak{Y=y}$ are independent for all $x,y$, with PMFs $p_X$ and $p_Y$,
+\begin{align}
+p_{X,Y}\brak{x,y} = p_X\brak{x}p_Y\brak{y}, \qquad p_{X+Y}\brak{n} = \sum_{k}p_X\brak{k}p_Y\brak{n-k}
+\label{eq:EE26BTECH11218-cb12-conv}
+\end{align}
+and for independent events $E_i$ with $\pr{E_i}=p_i$,
+\begin{align}
+\pr{\text{at least one } E_i \text{ occurs}} = 1-\prod_i\brak{1-p_i}
+\label{eq:EE26BTECH11218-cb12-atleast}
+\end{align}
+\solution Independence of the events $\cbrak{X=x}$ and $\cbrak{Y=y}$ factorises the joint PMF. The event $\cbrak{X+Y=n}$ is the disjoint union of $\cbrak{X=k,\,Y=n-k}$ over $k$, which gives the convolution. At least one event occurs iff the sum of the indicators is nonzero, and $\pr{\text{none}}=\prod_i\brak{1-p_i}$.
+
+\item (Binomial Distribution) The number $X$ of successes in $n$ independent trials with success probability $p$ has
+\begin{align}
+p_X\brak{k} &= \binom{n}{k}p^k\brak{1-p}^{n-k}, \quad k=0,1,\dots,n \nonumber \\
+E\sbrak{X} &= np, \quad \mathrm{var}\brak{X}=np\brak{1-p}
+\label{eq:EE26BTECH11218-cb12-binom}
+\end{align}
+\solution One trial has the PMF $\brak{1-p,\ p}$, whose generating function is $1-p+px$. By \eqref{eq:EE26BTECH11218-cb12-conv} the PMF of the sum of $n$ trials is the $n$-fold convolution, that is, the coefficients of $\brak{1-p+px}^n$, which are $\binom{n}{k}p^k\brak{1-p}^{n-k}$ by the binomial theorem. The mean and variance add over the independent trials.
+
+\item (Hypergeometric Distribution) Draw $n$ items without replacement from $M$ items, of which $K$ are of one kind. The number $X$ of items of that kind has
+\begin{align}
+p_X\brak{k} = \frac{\binom{K}{k}\binom{M-K}{n-k}}{\binom{M}{n}}, \qquad E\sbrak{X} = \frac{nK}{M}
+\label{eq:EE26BTECH11218-cb12-hyper}
+\end{align}
+\solution All $\binom{M}{n}$ subsets of size $n$ are equally likely, and those with exactly $k$ items of the first kind can be chosen in $\binom{K}{k}\binom{M-K}{n-k}$ ways. Writing $X=\sum_{i=1}^{n}X_i$, where $X_i$ indicates that the $i$-th draw is of the first kind, symmetry gives $\pr{X_i=1}=\frac{K}{M}$ and hence the mean.
+
+\item (Total Probability and Bayes' Theorem) If $B_1,\dots,B_m$ partition the sample space and $E$ is an event,
+\begin{align}
+\pr{B_j\mid E} = \frac{\pr{E\mid B_j}\pr{B_j}}{\sum_{i}\pr{E\mid B_i}\pr{B_i}}
+\label{eq:EE26BTECH11218-cb12-bayes}
+\end{align}
+\solution $\pr{B_jE} = \pr{E\mid B_j}\pr{B_j} = \pr{B_j\mid E}\pr{E}$, and $\pr{E}=\sum_i\pr{EB_i} = \sum_i\pr{E\mid B_i}\pr{B_i}$.
+
+\item (Lines in Space) A line through $\vec{a}$ with direction $\vec{m}$ is $\vec{x}=\vec{a}+\kappa\vec{m}$. The symmetric form
+\begin{align}
+\frac{x-x_0}{d_1} = \frac{y-y_0}{d_2} = \frac{z-z_0}{d_3} \implies \vec{m} = \myvec{d_1 \\ d_2 \\ d_3}
+\label{eq:EE26BTECH11218-cb12-symm}
+\end{align}
+A condition such as $x=5$ means that coordinate is constant, so that component of $\vec{m}$ is $0$. The angle $\theta$ between two lines is the angle between their directions, and they are perpendicular iff
+\begin{align}
+\cos\theta = \frac{\vec{m}_1^{\top}\vec{m}_2}{\norm{\vec{m}_1}\norm{\vec{m}_2}} = 0 \iff \vec{m}_1^{\top}\vec{m}_2 = 0
+\label{eq:EE26BTECH11218-cb12-perp}
+\end{align}
+\solution In the symmetric form, the point $\brak{x_0+\kappa d_1,\ y_0+\kappa d_2,\ z_0+\kappa d_3}$ moves along $\vec{m}$ as $\kappa$ varies, so $\vec{m}$ is the direction. A constant coordinate does not change with $\kappa$, so the corresponding component is $0$.
+
+\item (Cross Product, Area and Collinearity) $\norm{\vec{u}\times\vec{v}}$ is the area of the parallelogram on $\vec{u},\vec{v}$, and $\vec{u}\times\vec{v}=\vec{0}$ iff $\vec{u}\parallel\vec{v}$. For three points,
+\begin{align}
+\brak{\vec{b}-\vec{a}}\times\brak{\vec{c}-\vec{a}} = \vec{b}\times\vec{c}+\vec{c}\times\vec{a}+\vec{a}\times\vec{b}
+\label{eq:EE26BTECH11218-cb12-cross}
+\end{align}
+The area of the triangle is half the norm of this vector, and the points are collinear iff it is $\vec{0}$.
+\solution By bilinearity,
+\begin{align}
+\brak{\vec{b}-\vec{a}}\times\brak{\vec{c}-\vec{a}} = \vec{b}\times\vec{c} - \vec{b}\times\vec{a} - \vec{a}\times\vec{c} + \vec{a}\times\vec{a}
+\end{align}
+and $\vec{a}\times\vec{a}=\vec{0}$, $-\vec{b}\times\vec{a}=\vec{a}\times\vec{b}$, $-\vec{a}\times\vec{c}=\vec{c}\times\vec{a}$.
+
+\item (Determinants: Line and Area) The line through $\brak{x_1,y_1}$ and $\brak{x_2,y_2}$, and the area of a triangle with vertices $\brak{x_i,y_i}$, are, respectively,
+\begin{align}
+\mydet{x & y & 1 \\ x_1 & y_1 & 1 \\ x_2 & y_2 & 1} = 0, \qquad
+\Delta = \frac{1}{2}\abs{\mydet{x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1}}
+\label{eq:EE26BTECH11218-cb12-det}
+\end{align}
+\solution The first determinant is affine in $\brak{x,y}$ and vanishes at both given points (two equal rows), so it is the equation of the line through them. For the second, subtracting row 3 from rows 1 and 2 and expanding along the last column,
+\begin{align}
+\mydet{x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1} = \mydet{x_1-x_3 & y_1-y_3 \\ x_2-x_3 & y_2-y_3}
+\end{align}
+which is the signed area of the parallelogram on $\vec{x}_1-\vec{x}_3$ and $\vec{x}_2-\vec{x}_3$, twice the area of the triangle.
+
+\item (Shortest Distance between Two Lines) For $\vec{x}=\vec{a}_1+s\vec{m}_1$ and $\vec{x}=\vec{a}_2+t\vec{m}_2$, let $\vec{M}=\myvec{\vec{m}_1 & \vec{m}_2}$ and $\vec{b}=\vec{a}_2-\vec{a}_1$. Then
+\begin{align}
+d = \min_{\vec{z}}\norm{\vec{M}\vec{z}-\vec{b}}, \quad \vec{M}^{\top}\vec{M}\vec{z} = \vec{M}^{\top}\vec{b}, \quad \vec{z}=\myvec{s \\ -t}
+\label{eq:EE26BTECH11218-cb12-skew}
+\end{align}
+which is equivalent to
+\begin{align}
+d = \frac{\abs{\vec{b}^{\top}\brak{\vec{m}_1\times\vec{m}_2}}}{\norm{\vec{m}_1\times\vec{m}_2}}
+\label{eq:EE26BTECH11218-cb12-skew-cross}
+\end{align}
+The lines intersect iff $d=0$.
+\solution The distance between $\vec{a}_1+s\vec{m}_1$ and $\vec{a}_2+t\vec{m}_2$ is $\norm{s\vec{m}_1-t\vec{m}_2-\vec{b}}=\norm{\vec{M}\vec{z}-\vec{b}}$. It is minimum when the residual is orthogonal to both columns of $\vec{M}$ (the normal equations). The residual is then perpendicular to $\vec{m}_1$ and $\vec{m}_2$, so it is along $\vec{m}_1\times\vec{m}_2$ and equals the projection of $\vec{b}$ on that direction, which is \eqref{eq:EE26BTECH11218-cb12-skew-cross}.
+
+\item (Planes through a Line of Intersection) The planes $\vec{n}_1^{\top}\vec{x}+e_1=0$ and $\vec{n}_2^{\top}\vec{x}+e_2=0$ meet in a line, and every plane through that line is
+\begin{align}
+\brak{\vec{n}_1+\lambda\vec{n}_2}^{\top}\vec{x} + \brak{e_1+\lambda e_2} = 0
+\label{eq:EE26BTECH11218-cb12-pencil}
+\end{align}
+The distance of $\vec{n}^{\top}\vec{x}+e=0$ from the origin is
+\begin{align}
+\frac{\abs{e}}{\norm{\vec{n}}}
+\label{eq:EE26BTECH11218-cb12-plane-dist}
+\end{align}
+\solution A point on both planes satisfies \eqref{eq:EE26BTECH11218-cb12-pencil} for every $\lambda$. The point of the plane nearest to the origin lies along the normal, $\vec{x}^{*}=-\frac{e}{\norm{\vec{n}}^2}\vec{n}$ (it satisfies $\vec{n}^{\top}\vec{x}^{*}+e=0$), and $\norm{\vec{x}^{*}}=\frac{\abs{e}}{\norm{\vec{n}}}$.
+
+\item (Symmetric and Skew-Symmetric Parts) Every square matrix is $\vec{A}=\vec{S}+\vec{K}$ with
+\begin{align}
+\vec{S}=\frac{\vec{A}+\vec{A}^{\top}}{2}, \qquad \vec{K}=\frac{\vec{A}-\vec{A}^{\top}}{2}
+\label{eq:EE26BTECH11218-cb12-symskew}
+\end{align}
+and $\vec{A}$ is symmetric iff $\vec{K}=\vec{0}$.
+\solution $\vec{S}^{\top}=\vec{S}$, $\vec{K}^{\top}=-\vec{K}$ and $\vec{S}+\vec{K}=\vec{A}$. If $\vec{A}=\vec{A}^{\top}$, then $\vec{K}=\vec{0}$, and conversely.
+
+\item (Idempotent Matrices and Matrix Polynomials) Let $\vec{A}^2=\vec{A}$ and let $p$ be a polynomial. Dividing $p\brak{\lambda}=q\brak{\lambda}\brak{\lambda^2-\lambda}+r_1\lambda+r_0$,
+\begin{align}
+p\brak{\vec{A}} = r_1\vec{A}+r_0\vec{I}, \qquad r_0=p\brak{0}, \quad r_1=p\brak{1}-p\brak{0}
+\label{eq:EE26BTECH11218-cb12-idem}
+\end{align}
+\solution Since $\vec{A}^2-\vec{A}=\vec{0}$, the term $q\brak{\vec{A}}\brak{\vec{A}^2-\vec{A}}$ vanishes. Putting $\lambda=0$ and $\lambda=1$ (the roots of $\lambda^2-\lambda$) gives $p\brak{0}=r_0$ and $p\brak{1}=r_1+r_0$. Also, if $\vec{A}\vec{v}=\mu\vec{v}$ then $\mu^2=\mu$, so the eigenvalues of $\vec{A}$ are $0$ or $1$.
+
+\item (Relations as Boolean Matrices) On a finite set $\cbrak{x_1,\dots,x_n}$ let $M_{ij}=1$ iff $x_iRx_j$. Then
+\begin{align}
+\text{reflexive} &\iff M_{ii}=1\ \forall i \nonumber \\
+\text{symmetric} &\iff \vec{M}=\vec{M}^{\top} \nonumber \\
+\text{transitive} &\iff \brak{\vec{M}^2>0}\subseteq\brak{\vec{M}>0}
+\label{eq:EE26BTECH11218-cb12-relation}
+\end{align}
+If $L_{ik}=1$ when word $i$ contains letter $k$, then ``have a letter in common'' is $\vec{M}=\brak{\vec{L}\vec{L}^{\top}>0}$.
+\solution $\brak{\vec{M}^2}_{ik}=\sum_jM_{ij}M_{jk}$ counts the $j$ with $x_iRx_jRx_k$, so it is positive iff a two-step chain exists, and transitivity requires $x_iRx_k$ for every such chain. Also, $\brak{\vec{L}\vec{L}^{\top}}_{ij}=\sum_kL_{ik}L_{jk}$ is the number of common letters, and it is symmetric by construction.
+
+\item (Adjugate and Cayley-Hamilton) For a $2\times2$ matrix $\vec{A}$, the Cayley-Hamilton theorem states
+\begin{align}
+\vec{A}^2-\mathrm{tr}\brak{\vec{A}}\vec{A}+\mydet{\vec{A}}\vec{I}=\vec{0}
+\label{eq:EE26BTECH11218-cb12-ch}
+\end{align}
+and the adjugate satisfies
+\begin{align}
+\mathrm{adj}\brak{\vec{A}} = \mathrm{tr}\brak{\vec{A}}\vec{I}-\vec{A}, \qquad \vec{A}\,\mathrm{adj}\brak{\vec{A}} = \mathrm{adj}\brak{\vec{A}}\,\vec{A} = \mydet{\vec{A}}\vec{I}
+\label{eq:EE26BTECH11218-cb12-adj}
+\end{align}
+\solution For $\vec{A}=\myvec{a & b \\ c & d}$ the transposed cofactor matrix is $\myvec{d & -b \\ -c & a} = \brak{a+d}\vec{I}-\vec{A}$. By \eqref{eq:EE26BTECH11218-cb12-ch}, $\vec{A}\brak{\mathrm{tr}\brak{\vec{A}}\vec{I}-\vec{A}} = \mathrm{tr}\brak{\vec{A}}\vec{A}-\vec{A}^2 = \mydet{\vec{A}}\vec{I}$, and the other product is the same because $\vec{A}$ commutes with $\vec{I}$ and with itself. No inverse is used, so this holds even when $\mydet{\vec{A}}=0$.
+
+\item (Improper Integral and Substitution) If $f$ is continuous on $\sbrak{a,b}$ except for an unbounded point at $b$,
+\begin{align}
+\int_a^bf\brak{x}dx = \lim_{c\to b^{-}}\int_a^cf\brak{x}dx
+\label{eq:EE26BTECH11218-cb12-improper}
+\end{align}
+whenever the limit exists. With $x=\sin\theta$, a right triangle with hypotenuse $1$ gives $\tan\brak{\sin^{-1}x}=\frac{x}{\sqrt{1-x^2}}$ and $dx=\cos\theta\,d\theta$.
+
+\item (Integration by Parts) $\int u\,dv = uv-\int v\,du$, and
+\begin{align}
+\int e^x\brak{f\brak{x}+f'\brak{x}}dx = e^xf\brak{x}+c
+\label{eq:EE26BTECH11218-cb12-expf}
+\end{align}
+\solution With $u=f$ and $dv=e^xdx$, $\int e^xf\,dx = e^xf-\int e^xf'\,dx$. Adding $\int e^xf'\,dx$ to both sides gives \eqref{eq:EE26BTECH11218-cb12-expf}.
+
+\item (First-Order Linear ODE) The equation $\diff{y}{x}+P\brak{x}y=Q\brak{x}$ has the integrating factor
+\begin{align}
+\mu\brak{x} = e^{\int P\,dx}, \qquad \diff{}{x}\brak{\mu y} = \mu Q
+\label{eq:EE26BTECH11218-cb12-linode}
+\end{align}
+\solution By the product rule $\diff{}{x}\brak{\mu y} = \mu\diff{y}{x}+\mu'y$, which equals $\mu\brak{\diff{y}{x}+Py}$ iff $\mu'=P\mu$, that is $\mu=e^{\int P\,dx}$.
+
+\item (Area between Curves) The area between $y=f_1\brak{x}$ (above) and $y=f_2\brak{x}$ on $\sbrak{a,b}$ is $\int_a^b\brak{f_1-f_2}dx$. For the region between $x=y^2$ and $x=4$, which is symmetric about the $x$-axis ($y=\pm\sqrt{x}$), the part with $x\le a$ has area
+\begin{align}
+A\brak{a} = \int_0^a2\sqrt{x}\,dx = \frac{4}{3}a^{3/2}
+\label{eq:EE26BTECH11218-cb12-area}
+\end{align}
+and the line $x=a$ divides the region into two equal parts iff $A\brak{a}=\frac{1}{2}A\brak{4}$.
+
+\item (Partial Fractions) A proper rational function with a repeated factor is
+\begin{align}
+\frac{p\brak{x}}{\brak{x-r}^2\brak{x-s}} = \frac{A}{x-r}+\frac{B}{\brak{x-r}^2}+\frac{C}{x-s}
+\label{eq:EE26BTECH11218-cb12-partial}
+\end{align}
+where $A,B,C$ solve the linear system obtained by matching the coefficients of $p\brak{x}=A\brak{x-r}\brak{x-s}+B\brak{x-s}+C\brak{x-r}^2$. Then $\int\frac{dx}{x-r}=\ln\abs{x-r}$ and $\int\frac{dx}{\brak{x-r}^2}=-\frac{1}{x-r}$.
+\end{enumerate}
