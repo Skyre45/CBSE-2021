@@ -89,12 +89,12 @@ The number of multiples of both $a$ and $b$ in $\cbrak{1,2,\dots,N}$ is
 \left\lfloor\frac{N}{\operatorname{lcm}\brak{a,b}}\right\rfloor
 \label{eq:EE26BTECH11218-cb-lcm}
 \end{align}
-and the number of outcomes when $k$ dice are thrown is
+and the number of outcomes when $k$ dice are thrown is obtained by evaluating the product of their Z-transforms at $z=1$:
 \begin{align}
-\sbrak{\brak{x+x^2+\cdots+x^6}^k}_{x=1} = 6^k
+\sbrak{\brak{z^{-1}+z^{-2}+\cdots+z^{-6}}^k}_{z=1} = 6^k
 \label{eq:EE26BTECH11218-cb-dice-count}
 \end{align}
-\solution The coefficient of $x^n$ in $\brak{x+\cdots+x^6}^k$ is the number of outcomes of the $k$ dice with sum $n$, since multiplying generating functions is the discrete convolution of the counts. Setting $x=1$ adds up the counts of all sums, giving \eqref{eq:EE26BTECH11218-cb-dice-count}. A number is a multiple of $a$ and $b$ iff it is a multiple of $\operatorname{lcm}\brak{a,b}$, which gives \eqref{eq:EE26BTECH11218-cb-lcm}.
+\solution The coefficient of $z^{-n}$ in $\brak{z^{-1}+\cdots+z^{-6}}^k$ is the number of outcomes of the $k$ dice with sum $n$, since multiplying Z-transforms corresponds to the discrete convolution of the sequence of counts. Setting $z=1$ adds up the counts of all sums, giving \eqref{eq:EE26BTECH11218-cb-dice-count}. A number is a multiple of $a$ and $b$ iff it is a multiple of $\operatorname{lcm}\brak{a,b}$, which gives \eqref{eq:EE26BTECH11218-cb-lcm}.
 
 \item (Incircle of a Triangle) Let $a,b,c$ be the lengths of the sides $BC$, $CA$, $AB$ opposite the vertices $\vec{A},\vec{B},\vec{C}$ respectively, $s=\frac{a+b+c}{2}$, and let $\mathcal{A}$ be the area. The incentre $\vec{I}$ (the centre of the inscribed circle) and the inradius $r$ are
 \begin{align}

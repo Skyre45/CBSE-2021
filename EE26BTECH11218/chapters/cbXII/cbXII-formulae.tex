@@ -18,7 +18,7 @@ p_X\brak{k} &= \binom{n}{k}p^k\brak{1-p}^{n-k}, \quad k=0,1,\dots,n \nonumber \\
 E\sbrak{X} &= np, \quad \mathrm{var}\brak{X}=np\brak{1-p}
 \label{eq:EE26BTECH11218-cb12-binom}
 \end{align}
-\solution One trial has the PMF $\brak{1-p,\ p}$, whose generating function is $1-p+px$. By \eqref{eq:EE26BTECH11218-cb12-conv} the PMF of the sum of $n$ trials is the $n$-fold convolution, that is, the coefficients of $\brak{1-p+px}^n$, which are $\binom{n}{k}p^k\brak{1-p}^{n-k}$ by the binomial theorem. The mean and variance add over the independent trials.
+\solution One trial has the PMF $\brak{1-p,\ p}$, whose Z-transform is $\brak{1-p}+pz^{-1}$. By \eqref{eq:EE26BTECH11218-cb12-conv} the PMF of the sum of $n$ trials is the $n$-fold convolution, corresponding to the coefficients of the Z-transform product $\brak{1-p+pz^{-1}}^n$, which are $\binom{n}{k}p^k\brak{1-p}^{n-k}$ by the binomial theorem. The mean and variance add over the independent trials.
 
 \item (Hypergeometric Distribution) Draw $n$ items without replacement from $M$ items, of which $K$ are of one kind. The number $X$ of items of that kind has
 \begin{align}
