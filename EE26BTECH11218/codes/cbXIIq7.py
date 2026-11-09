@@ -23,7 +23,7 @@ print("dF_D/dx =", (F["D"](x0 + h) - F["D"](x0 - h)) / (2 * h), " integrand =", 
 
 b = np.linspace(0, 3, 200)
 I = np.array([quad(g, 0, t)[0] for t in b])
-plt.plot(b, I, "k", lw=4, alpha=0.35, label="numerical $\\int_0^b$")
+plt.plot(b, I, "k", lw=4, alpha=0.35, label="numerical integral from 0 to $b$")
 for k, st in zip(F, ["--", "-.", ":", "-"]):
     plt.plot(b, F[k](b) - F[k](0), st, label="option (%s)" % k)
 plt.xlabel("$b$"); plt.legend(); plt.grid(True, linestyle="--", alpha=0.6)

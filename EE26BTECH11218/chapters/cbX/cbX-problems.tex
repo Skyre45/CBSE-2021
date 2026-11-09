@@ -169,103 +169,6 @@ The following code verifies the results in \figref{fig:EE26BTECH11218-cb_q17}.
     \caption{The parallel paths $2x-3y=5$ and $-6x+9y=7$}
     \label{fig:EE26BTECH11218-cb_q17}
 \end{figure}
-\item The time taken (in seconds) by a group of students to complete a race is recorded as follows.
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-Time (s) & $0$--$20$ & $20$--$40$ & $40$--$60$ & $60$--$80$ & $80$--$100$ \\ \hline
-Students & $1$ & $4$ & $3$ & $7$ & $5$ \\ \hline
-\end{tabular}
-\end{center}
-\hfill (CBSE~X~2021)
-
-\begin{enumerate}[label=(\roman*), itemsep=0pt]
-\item The class mark of the modal class is
-\begin{enumerate}[label=\alph*), itemsep=0pt]
-    \begin{multicols}{4}
-        \item $60$
-        \item $70$
-        \item $80$
-        \item $140$
-    \end{multicols}
-\end{enumerate}
-\item The mode of the given data is
-\begin{enumerate}[label=\alph*), itemsep=0pt]
-    \begin{multicols}{4}
-        \item $70.33$
-        \item $71.33$
-        \item $72.33$
-        \item $73.33$
-    \end{multicols}
-\end{enumerate}
-\item The median class of the given data is
-\begin{enumerate}[label=\alph*), itemsep=0pt]
-    \begin{multicols}{4}
-        \item $20$--$40$
-        \item $40$--$60$
-        \item $80$--$100$
-        \item $60$--$80$
-    \end{multicols}
-\end{enumerate}
-\item The sum of the lower limits of the median class and the modal class is
-\begin{enumerate}[label=\alph*), itemsep=0pt]
-    \begin{multicols}{4}
-        \item $80$
-        \item $140$
-        \item $120$
-        \item $100$
-    \end{multicols}
-\end{enumerate}
-\item The median time (in seconds) of the given data is
-\begin{enumerate}[label=\alph*), itemsep=0pt]
-    \begin{multicols}{4}
-        \item $65.7$
-        \item $85.7$
-        \item $45.7$
-        \item $25.7$
-    \end{multicols}
-\end{enumerate}
-\end{enumerate}
-\solution
-Here $h=20$, $N=\sum_i f_i = 20$, and the cumulative frequencies are
-\begin{align}
-F_i = 1,\ 5,\ 8,\ 15,\ 20
-\end{align}
-\textbf{(i)} The largest frequency is $7$, so the modal class is $60$--$80$ with class mark $\frac{60+80}{2}=70$: option (b).
-
-\textbf{(ii)} With $l=60$, $f_0=3$, $f_1=7$, $f_2=5$, the two lines of the histogram construction pass through
-\begin{align}
-\vec{A}_1 = \myvec{60 \\ 3},\ \vec{B}_1 = \myvec{80 \\ 7}, \qquad \vec{A}_2 = \myvec{60 \\ 7},\ \vec{B}_2 = \myvec{80 \\ 5}
-\end{align}
-The direction vectors are $\vec{m}_1 = \myvec{20 \\ 4}$, $\vec{m}_2 = \myvec{20 \\ -2}$, with normals obtained by a $90^{\circ}$ rotation, $\vec{n}_i = \myvec{0 & 1 \\ -1 & 0}\vec{m}_i$, so that
-\begin{align}
-\myvec{4 & -20 \\ -2 & -20}\vec{x} = \myvec{\vec{n}_1^{\top}\vec{A}_1 \\ \vec{n}_2^{\top}\vec{A}_2} = \myvec{180 \\ -260}
-\implies \vec{x} = \myvec{73.33 \\ 5.67}
-\end{align}
-Its abscissa is the mode, which agrees with \eqref{eq:EE26BTECH11218-cb-mode}
-\begin{align}
-60 + \frac{7-3}{14-3-5}\times 20 = 73.33
-\end{align}
-option (d).
-
-\textbf{(iii)} Since $\frac{N}{2}=10$ and $F_3 = 8 < 10 \le 15 = F_4$, the median class is $60$--$80$: option (d).
-
-\textbf{(iv)} The lower limits of both classes are $60$, so the sum is $120$: option (c).
-
-\textbf{(v)} From \eqref{eq:EE26BTECH11218-cb-median}, with $l=60$, $F_{k-1}=8$, $f_k=7$,
-\begin{align}
-\text{Median} = 60 + \frac{10-8}{7}\times 20 = 60+\frac{40}{7} \approx 65.7
-\end{align}
-option (a). The following code verifies the mode as a line intersection and the median as the root of the ogive in \figref{fig:EE26BTECH11218-cb_q19}.
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXq19.py}@*)
-\end{lstlisting}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.95\linewidth]{figs/cbXq19.pdf}
-    \caption{Histogram construction for the mode and ogive for the median}
-    \label{fig:EE26BTECH11218-cb_q19}
-\end{figure}
 \item Twenty identical cards are numbered $1$ to $20$ and placed in a box. One card is drawn at random.
 \hfill (CBSE~X~2021)
 
@@ -329,9 +232,9 @@ Let $\Omega = \cbrak{1,2,\dots,20}$ with $p_X\brak{n} = \frac{1}{20}$ and use \e
 
 \textbf{(iv)} $\operatorname{lcm}\brak{3,7}=21>20$, so the count is $\left\lfloor\frac{20}{21}\right\rfloor = 0$ and the probability is $0$: option (c).
 
-\textbf{(v)} Let $E$ be the event ``even number'' and $S$ the event ``prime''. Then $\pr{E}=\frac{10}{20}$ and $SE=\cbrak{2}$, so
+\textbf{(v)} Let $E$ be the event ``even number'' and $S$ the event ``prime''. Then $\pr{E}=\frac{10}{20}$ and $S\cap E=\cbrak{2}$, so
 \begin{align}
-\pr{S\mid E} = \frac{\pr{SE}}{\pr{E}} = \frac{1/20}{1/2} = \frac{1}{10}
+\pr{S\mid E} = \frac{\pr{S\cap E}}{\pr{E}} = \frac{1/20}{1/2} = \frac{1}{10}
 \end{align}
 option (b). The following code verifies these in \figref{fig:EE26BTECH11218-cb_q20}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
@@ -373,25 +276,40 @@ This agrees with $\frac{1}{3}=\frac{2}{k}\ne\frac{-5}{15}$ at $k=6$. The followi
 \hfill (CBSE~X~2021)
 \\
 \solution
-Taking $B$ as the origin with $BC$ and $BA$ along the axes,
+Place $B$ at the origin, with $BC$ along the $x$-axis and $BA$ along the $y$-axis. Then
 \begin{align}
 \vec{A} = \myvec{0 \\ 8}, \quad \vec{B} = \myvec{0 \\ 0}, \quad \vec{C} = \myvec{6 \\ 0}
 \end{align}
-The sides are $a=BC=6$, $c=AB=8$ and $b=CA=\norm{\vec{C}-\vec{A}}=10$. From \eqref{eq:EE26BTECH11218-cb-incircle},
+The three sides of the triangle are $BC$, $CA$ and $AB$ (the side $AB$ joins $A$ and $B$, and so on), with lengths $a=BC=6$, $b=CA=\norm{\vec{C}-\vec{A}}=10$ and $c=AB=8$. The centre $O$ of the inscribed circle is the incentre $\vec{I}$, so from \eqref{eq:EE26BTECH11218-cb-incircle},
 \begin{align}
 \vec{I} = \frac{6\myvec{0 \\ 8} + 10\myvec{0 \\ 0} + 8\myvec{6 \\ 0}}{24} = \myvec{2 \\ 2}, \qquad
-r = \frac{\Delta}{s} = \frac{\frac{1}{2}\cdot6\cdot8}{12} = 2
+r = \frac{\mathcal{A}}{s} = \frac{\frac{1}{2}\cdot6\cdot8}{12} = 2
 \end{align}
-Using the linear system \eqref{eq:EE26BTECH11218-cb-incircle-sys} with the inward unit normals of $AB$, $BC$ and $CA$ ($4x+3y=24$),
+and from \eqref{eq:EE26BTECH11218-cb-incircle-right}, $r = \frac{6+8-10}{2} = 2$.
+
+\textbf{A second method, from the definition of the incircle.} The circle touches all three sides, so its centre $\vec{I}=\myvec{x \\ y}$ is at the same distance $r$ from the three lines that contain the sides:
+\begin{align}
+\text{line } AB: \ x=0, \qquad \text{line } BC: \ y=0, \qquad \text{line } CA: \ 4x+3y=24
+\end{align}
+(the line $CA$ passes through $C\brak{6,0}$ and $A\brak{0,8}$). The centre lies inside the triangle, where $x>0$, $y>0$ and $4x+3y<24$, so its distances from the three lines are
+\begin{align}
+\text{from } AB: \ x, \qquad \text{from } BC: \ y, \\
+\text{from } CA: \ \frac{24-4x-3y}{5} = 4.8-0.8x-0.6y
+\end{align}
+Setting each distance equal to $r$ and moving the unknowns to the left,
+\begin{align}
+x - r = 0, \qquad y - r = 0, \qquad -0.8x - 0.6y - r = -4.8
+\end{align}
+These are three linear equations in the three unknowns $x$, $y$ and $r$, so they form one matrix equation, in which row 1 is the condition for the side $AB$, row 2 for $BC$ and row 3 for $CA$ (compare \eqref{eq:EE26BTECH11218-cb-incircle-sys}):
 \begin{align}
 \myvec{1 & 0 & -1 \\ 0 & 1 & -1 \\ -0.8 & -0.6 & -1}\myvec{x \\ y \\ r} = \myvec{0 \\ 0 \\ -4.8}
 \implies \myvec{x \\ y \\ r} = \myvec{2 \\ 2 \\ 2}
 \end{align}
-Also, from \eqref{eq:EE26BTECH11218-cb-incircle-right}, $r = \frac{6+8-10}{2} = 2$.
+The purpose of this matrix equation is that one linear solve gives the centre $\brak{2,2}$ and the radius $r=2$ together, straight from the definition and without the incentre formula, so it is an independent check of the first method. (The first two rows give $x=y=r$, and then the third gives $-2.4r=-4.8$.)
 \begin{align}
 \therefore r = 2 \text{ cm}
 \end{align}
-The points of contact are $\vec{P}=\myvec{0 \\ 2}$, $\vec{Q}=\myvec{2 \\ 0}$ and $\vec{R}=\myvec{3.6 \\ 3.2}$. The following code verifies this in \figref{fig:EE26BTECH11218-cb_q25}.
+The points of contact are the feet of the perpendiculars from $\vec{I}$ to the sides: $\vec{P}=\myvec{0 \\ 2}$ on $AB$, $\vec{Q}=\myvec{2 \\ 0}$ on $BC$ and $\vec{R}=\myvec{3.6 \\ 3.2}$ on $CA$. The following code verifies this in \figref{fig:EE26BTECH11218-cb_q25}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXq25.py}@*)
 \end{lstlisting}
@@ -409,7 +327,7 @@ From \eqref{eq:EE26BTECH11218-cb-division}, let $q\brak{x}=q_1x+q_0$ and $r\brak
 \begin{align}
 q\brak{x}g\brak{x} + r\brak{x} = q_1x^3 + \brak{q_1+q_0}x^2 + \brak{q_1+q_0+r_1}x + \brak{q_0+r_0}
 \end{align}
-Comparing coefficients with $f\brak{x}$ gives the matrix equation
+Comparing the coefficients of $x^3$, $x^2$, $x$ and $1$ with those of $f\brak{x}$ gives one equation per row of the matrix equation, in the unknown coefficients of $q$ and $r$
 \begin{align}
 \myvec{1 & 0 & 0 & 0 \\ 1 & 1 & 0 & 0 \\ 1 & 1 & 1 & 0 \\ 0 & 1 & 0 & 1}\myvec{q_1 \\ q_0 \\ r_1 \\ r_0} = \myvec{5 \\ 10 \\ -30 \\ -15}
 \implies \myvec{q_1 \\ q_0 \\ r_1 \\ r_0} = \myvec{5 \\ 5 \\ -40 \\ -20}
@@ -463,7 +381,7 @@ Let the tower have height $h$ and let $x\brak{t}$ be the horizontal distance of 
 \begin{align}
 x\brak{0} = h\cot30^{\circ} = \sqrt{3}h, \qquad x\brak{18} = h\cot60^{\circ} = \frac{h}{\sqrt{3}}
 \end{align}
-Using \eqref{eq:EE26BTECH11218-cb-uniform} and \eqref{eq:EE26BTECH11218-cb-uniform-sys} with $t_1=0$, $t_2=18$,
+Using \eqref{eq:EE26BTECH11218-cb-uniform} and \eqref{eq:EE26BTECH11218-cb-uniform-sys} with $t_1=0$, $t_2=18$. The first row says $x_0=x\brak{0}$ and the second says $x_0-18v=x\brak{18}$, so the unknowns are the starting distance $x_0$ and the speed $v$ (distance per minute):
 \begin{align}
 \myvec{1 & 0 \\ 1 & -18}\myvec{x_0 \\ v} = \myvec{\sqrt{3}h \\ \frac{h}{\sqrt{3}}}
 \implies x_0 = \sqrt{3}h, \quad v = \frac{1}{18}\brak{\sqrt{3}-\frac{1}{\sqrt{3}}}h = \frac{h}{9\sqrt{3}}

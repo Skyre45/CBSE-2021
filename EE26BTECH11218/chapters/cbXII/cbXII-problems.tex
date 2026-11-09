@@ -92,7 +92,7 @@ The substitution $x=\sin\theta$ gives the same value, $\int_0^{\pi/2}\tan\theta\
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\linewidth]{figs/cbXIIq6.pdf}
-    \caption{The integrand and the partial integrals $\int_0^b$ tending to $1$}
+    \caption{The integrand $\frac{x}{\sqrt{1-x^2}}$ and the partial integrals $\int_0^b\frac{x}{\sqrt{1-x^2}}dx$, which tend to $1$}
     \label{fig:EE26BTECH11218-cb12_q6}
 \end{figure}
 \item $\displaystyle\int\frac{e^x}{x+1}\sbrak{1+\brak{x+1}\log\brak{x+1}}dx$ equals
@@ -116,14 +116,14 @@ From \eqref{eq:EE26BTECH11218-cb12-expf},
 \begin{align}
 \int e^x\brak{f+f'}dx = e^xf+c = e^x\log\brak{x+1}+c
 \end{align}
-Hence the answer is option (d). Numerically, only option (d) has $F\brak{b}-F\brak{0}$ equal to $\int_0^b$ of the integrand (for $b=1$ both are $1.8842$). The following code verifies this in \figref{fig:EE26BTECH11218-cb12_q7}.
+Hence the answer is option (d). Numerically, only option (d) has $F\brak{b}-F\brak{0}$ equal to the integral of the integrand from $0$ to $b$ (for $b=1$ both are $1.8842$). The following code verifies this in \figref{fig:EE26BTECH11218-cb12_q7}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq7.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.70\linewidth]{figs/cbXIIq7.pdf}
-    \caption{Numerical $\int_0^b$ compared with the increments of the four options}
+    \caption{Numerical integral of the integrand from $0$ to $b$ compared with $F\brak{b}-F\brak{0}$ for the four options}
     \label{fig:EE26BTECH11218-cb12_q7}
 \end{figure}
 \item The integrating factor of the differential equation $x\diff{y}{x}-y=\log x$ is \underline{\hspace{2cm}}.
@@ -365,7 +365,7 @@ From \eqref{eq:EE26BTECH11218-cb12-symm}, the lines are $\vec{x}=\vec{a}_1+s\vec
 \vec{a}_1 = \myvec{1 \\ -1 \\ 0}, \ \vec{m}_1 = \myvec{2 \\ 3 \\ 1}, \qquad &\vec{a}_2 = \myvec{-1 \\ 2 \\ 2}, \ \vec{m}_2 = \myvec{5 \\ 1 \\ 0} \\
 \vec{b} = \vec{a}_2-\vec{a}_1 &= \myvec{-2 \\ 3 \\ 2}
 \end{align}
-The normal equations in \eqref{eq:EE26BTECH11218-cb12-skew} are
+Let $\vec{M}=\myvec{\vec{m}_1 & \vec{m}_2}$ and $\vec{z}=\myvec{s \\ -t}$. The normal equations $\vec{M}^{\top}\vec{M}\vec{z}=\vec{M}^{\top}\vec{b}$ in \eqref{eq:EE26BTECH11218-cb12-skew} have the inner products $\vec{m}_1^{\top}\vec{m}_1=14$, $\vec{m}_1^{\top}\vec{m}_2=13$, $\vec{m}_2^{\top}\vec{m}_2=26$ on the left and $\vec{m}_1^{\top}\vec{b}=7$, $\vec{m}_2^{\top}\vec{b}=-7$ on the right:
 \begin{align}
 \myvec{14 & 13 \\ 13 & 26}\myvec{s \\ -t} = \myvec{7 \\ -7} \implies s=\frac{7}{5}, \quad t=\frac{63}{65}
 \end{align}
@@ -456,7 +456,7 @@ The following code solves $A\brak{a}=\frac{1}{2}A\brak{4}$ numerically and verif
 \hfill (CBSE~XII~\cbxiiyear)
 \\
 \solution
-From \eqref{eq:EE26BTECH11218-cb12-partial}, $x = A\brak{x-1}\brak{x+2}+B\brak{x+2}+C\brak{x-1}^2$. Matching the coefficients of $x^2$, $x$ and $1$,
+From \eqref{eq:EE26BTECH11218-cb12-partial}, $x = A\brak{x-1}\brak{x+2}+B\brak{x+2}+C\brak{x-1}^2$. Matching the coefficients of $x^2$, $x$ and $1$ gives one equation per row ($A+C=0$, $A+B-2C=1$ and $-2A+2B+C=0$), that is,
 \begin{align}
 \myvec{1 & 0 & 1 \\ 1 & 1 & -2 \\ -2 & 2 & 1}\myvec{A \\ B \\ C} = \myvec{0 \\ 1 \\ 0} \implies \myvec{A \\ B \\ C} = \myvec{\frac{2}{9} \\ \frac{1}{3} \\ -\frac{2}{9}}
 \end{align}
@@ -464,7 +464,7 @@ Hence
 \begin{align}
 \int\frac{x\,dx}{\brak{x-1}^2\brak{x+2}} = \frac{2}{9}\ln\abs{x-1}-\frac{1}{3\brak{x-1}}-\frac{2}{9}\ln\abs{x+2}+c
 \end{align}
-The following code verifies this, including $\int_2^5=0.4337$ against the antiderivative, in \figref{fig:EE26BTECH11218-cb12_q35b}.
+Let $f\brak{x}=\frac{x}{\brak{x-1}^2\brak{x+2}}$ and let $F\brak{x}$ be the antiderivative above. The following code checks that $F'\brak{x}=f\brak{x}$ and that $\int_2^5 f\brak{x}\,dx = 0.4337 = F\brak{5}-F\brak{2}$, as shown in \figref{fig:EE26BTECH11218-cb12_q35b}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq35b.py}@*)
 \end{lstlisting}

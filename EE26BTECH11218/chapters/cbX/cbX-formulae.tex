@@ -78,10 +78,10 @@ It is consistent iff $\rank\brak{\vec{A}} = \rank\brak{\sbrak{\vec{A}\mid\vec{b}
 where the ratios are read as cross-multiplied products if a denominator is zero.
 \solution $\mydet{\vec{A}} = a_1b_2 - a_2b_1 \ne 0$ iff the rows (the normals) are linearly independent, which is $\frac{a_1}{a_2}\ne\frac{b_1}{b_2}$. If the second row of $\vec{A}$ is $\lambda$ times the first, then $\rank\brak{\vec{A}}=1$, and the last row of the augmented matrix after $R_2 \to R_2-\lambda R_1$ is $\myvec{0 & 0 & b_2-\lambda b_1}$, which is zero iff the constants are in the same ratio.
 
-\item (Uniform Sample Space) For $\Omega$ with equally likely outcomes and an event $E\subseteq\Omega$,
+\item (Uniform Sample Space) For $\Omega$ with equally likely outcomes, an event $E\subseteq\Omega$, and events $A,B$ (where $A\cap B$ is the event that both occur),
 \begin{align}
 \pr{E} = \frac{\abs{E}}{\abs{\Omega}}, \quad \pr{E^{c}} = 1-\pr{E}, \quad
-\pr{A\mid B} = \frac{\pr{AB}}{\pr{B}}
+\pr{A\mid B} = \frac{\pr{A\cap B}}{\pr{B}}
 \label{eq:EE26BTECH11218-cb-prob}
 \end{align}
 The number of multiples of both $a$ and $b$ in $\cbrak{1,2,\dots,N}$ is
@@ -96,25 +96,9 @@ and the number of outcomes when $k$ dice are thrown is
 \end{align}
 \solution The coefficient of $x^n$ in $\brak{x+\cdots+x^6}^k$ is the number of outcomes of the $k$ dice with sum $n$, since multiplying generating functions is the discrete convolution of the counts. Setting $x=1$ adds up the counts of all sums, giving \eqref{eq:EE26BTECH11218-cb-dice-count}. A number is a multiple of $a$ and $b$ iff it is a multiple of $\operatorname{lcm}\brak{a,b}$, which gives \eqref{eq:EE26BTECH11218-cb-lcm}.
 
-\item (Grouped Data: Mode and Median) Let the classes be $\sbrak{l_i, l_i+h}$ with frequencies $f_i$, $N=\sum_i f_i$ and cumulative frequency $F_i = \sum_{j\le i} f_j$. If $\sbrak{l,l+h}$ is the modal class with frequency $f_1$, and $f_0$, $f_2$ are the frequencies of the preceding and succeeding classes,
+\item (Incircle of a Triangle) Let $a,b,c$ be the lengths of the sides $BC$, $CA$, $AB$ opposite the vertices $\vec{A},\vec{B},\vec{C}$ respectively, $s=\frac{a+b+c}{2}$, and let $\mathcal{A}$ be the area. The incentre $\vec{I}$ (the centre of the inscribed circle) and the inradius $r$ are
 \begin{align}
-\text{Mode} = l + \frac{f_1-f_0}{2f_1-f_0-f_2}\,h
-\label{eq:EE26BTECH11218-cb-mode}
-\end{align}
-If $\sbrak{l,l+h}$ is the class with $F_{k-1} < \frac{N}{2} \le F_k$ and frequency $f_k$,
-\begin{align}
-\text{Median} = l + \frac{\frac{N}{2}-F_{k-1}}{f_k}\,h
-\label{eq:EE26BTECH11218-cb-median}
-\end{align}
-\solution On the histogram, join the top-right corner of the preceding bar to the top-right corner of the modal bar, and the top-left corner of the modal bar to the top-left corner of the succeeding bar. With $t = \frac{x-l}{h}$ the two lines are
-\begin{align}
-y = f_0 + \brak{f_1-f_0}t, \qquad y = f_1 + \brak{f_2-f_1}t
-\end{align}
-Equating them, $t = \frac{f_1-f_0}{2f_1-f_0-f_2}$, and $x = l + th$ is \eqref{eq:EE26BTECH11218-cb-mode}. For the median, the ogive (cumulative frequency) is piecewise linear, and the median solves $F\brak{x}=\frac{N}{2}$. On the class $\sbrak{l,l+h}$, $F\brak{x} = F_{k-1} + f_k\frac{x-l}{h}$, which gives \eqref{eq:EE26BTECH11218-cb-median}.
-
-\item (Incircle of a Triangle) Let $a,b,c$ be the sides opposite $\vec{A},\vec{B},\vec{C}$, $s=\frac{a+b+c}{2}$ and $\Delta$ the area. The incentre $\vec{I}$ and inradius $r$ are
-\begin{align}
-\vec{I} = \frac{a\vec{A}+b\vec{B}+c\vec{C}}{a+b+c}, \qquad r = \frac{\Delta}{s}
+\vec{I} = \frac{a\vec{A}+b\vec{B}+c\vec{C}}{a+b+c}, \qquad r = \frac{\mathcal{A}}{s}
 \label{eq:EE26BTECH11218-cb-incircle}
 \end{align}
 For a right angle at $\vec{B}$ (legs $a$, $c$, hypotenuse $b$),
@@ -122,12 +106,12 @@ For a right angle at $\vec{B}$ (legs $a$, $c$, hypotenuse $b$),
 r = \frac{a+c-b}{2}
 \label{eq:EE26BTECH11218-cb-incircle-right}
 \end{align}
-Equivalently, with $\vec{n}_i^{\top}\vec{x}=c_i$ the three sides in terms of inward unit normals, $\brak{\vec{I},r}$ solves the linear system
+The incircle touches all three sides, so $\vec{I}$ is at the same distance $r$ from the three lines that contain the sides. Write each such line as $\vec{n}_i^{\top}\vec{x}=c_i$, where $\norm{\vec{n}_i}=1$ and $\vec{n}_i$ points towards the inside of the triangle. A point $\vec{x}$ inside the triangle is then at distance $\vec{n}_i^{\top}\vec{x}-c_i$ from the $i$-th line, and $\brak{\vec{I},r}$ satisfies three linear equations, one per side,
 \begin{align}
 \vec{n}_i^{\top}\vec{I} - r = c_i, \quad i = 1,2,3
 \label{eq:EE26BTECH11218-cb-incircle-sys}
 \end{align}
-\solution Joining $\vec{I}$ to the vertices splits the triangle into three triangles of height $r$ on the bases $a,b,c$, so $\Delta = \frac{1}{2}r\brak{a+b+c} = rs$. For a right angle at $\vec{B}$ the two tangent segments from $\vec{B}$ equal $r$, and those from $\vec{A}$, $\vec{C}$ are $c-r$ and $a-r$, so $b = \brak{c-r}+\brak{a-r}$, giving \eqref{eq:EE26BTECH11218-cb-incircle-right}. The signed distance of $\vec{I}$ from the line $\vec{n}_i^{\top}\vec{x}=c_i$ is $\vec{n}_i^{\top}\vec{I}-c_i = r$ for each side, giving \eqref{eq:EE26BTECH11218-cb-incircle-sys}.
+\solution Joining $\vec{I}$ to the vertices splits the triangle into three triangles of height $r$ on the bases $a,b,c$, so $\mathcal{A} = \frac{1}{2}r\brak{a+b+c} = rs$. For a right angle at $\vec{B}$ the two tangent segments from $\vec{B}$ equal $r$, and those from $\vec{A}$, $\vec{C}$ are $c-r$ and $a-r$, so $b = \brak{c-r}+\brak{a-r}$, giving \eqref{eq:EE26BTECH11218-cb-incircle-right}. For the last form, the distance of the point $\vec{I}$ from the line $\vec{n}_i^{\top}\vec{x}=c_i$ is $\vec{n}_i^{\top}\vec{I}-c_i$, and it must equal $r$ for each of the three lines, which is \eqref{eq:EE26BTECH11218-cb-incircle-sys}. With three unknowns (the two coordinates of $\vec{I}$ and $r$) and three equations, the solution is unique.
 
 \item (Polynomial Division and Remainder Theorem) For polynomials $f$ and $g\ne0$ there are unique $q$ and $r$ with
 \begin{align}
