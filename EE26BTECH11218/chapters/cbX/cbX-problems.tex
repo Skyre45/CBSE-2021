@@ -69,12 +69,12 @@ The following code verifies this in \figref{fig:EE26BTECH11218-cb_q7}.
 \hfill (CBSE~X~2021)
 \\
 \solution
-For one die, the Z-transform of the outcomes is $z^{-1}+z^{-2}+\cdots+z^{-6}$. For three dice, from \eqref{eq:EE26BTECH11218-cb-dice-count}, by the convolution property of the Z-transform, the number of outcomes with sum $n$ is the coefficient of $z^{-n}$ in the product:
+For one die, the generating function of the outcomes is $x+x^2+\cdots+x^6$. For three dice, from \eqref{eq:EE26BTECH11218-cb-dice-count}, the number of outcomes with sum $n$ is the coefficient of $x^n$ in
 \begin{align}
-\brak{z^{-1}+z^{-2}+\cdots+z^{-6}}^3 &= z^{-3} + 3z^{-4} + 6z^{-5} + 10z^{-6} + 15z^{-7} + 21z^{-8} \\
-&\quad + 25z^{-9} + 27z^{-10} + \cdots + z^{-18}
+\brak{x+x^2+\cdots+x^6}^3 &= x^3 + 3x^4 + 6x^5 + 10x^6 + 15x^7 + 21x^8 \\
+&\quad + 25x^9 + 27x^{10} + \cdots + x^{18}
 \end{align}
-Evaluating at $z=1$ adds the coefficients of all sums, giving the total number of outcomes:
+and setting $x=1$ adds the counts of all sums,
 \begin{align}
 \brak{1+1+\cdots+1}^3 = 6^3 = 216
 \end{align}

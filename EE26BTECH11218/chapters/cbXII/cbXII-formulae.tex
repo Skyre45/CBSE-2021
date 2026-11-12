@@ -18,7 +18,7 @@ p_X\brak{k} &= \binom{n}{k}p^k\brak{1-p}^{n-k}, \quad k=0,1,\dots,n \nonumber \\
 E\sbrak{X} &= np, \quad \mathrm{var}\brak{X}=np\brak{1-p}
 \label{eq:EE26BTECH11218-cb12-binom}
 \end{align}
-\solution One trial has the PMF $\brak{1-p,\ p}$, whose Z-transform is $\brak{1-p}+pz^{-1}$. By \eqref{eq:EE26BTECH11218-cb12-conv} the PMF of the sum of $n$ trials is the $n$-fold convolution, corresponding to the coefficients of the Z-transform product $\brak{1-p+pz^{-1}}^n$, which are $\binom{n}{k}p^k\brak{1-p}^{n-k}$ by the binomial theorem. The mean and variance add over the independent trials.
+\solution One trial has the PMF $\brak{1-p,\ p}$, whose generating function is $1-p+px$. By \eqref{eq:EE26BTECH11218-cb12-conv} the PMF of the sum of $n$ trials is the $n$-fold convolution, that is, the coefficients of $\brak{1-p+px}^n$, which are $\binom{n}{k}p^k\brak{1-p}^{n-k}$ by the binomial theorem. The mean and variance add over the independent trials.
 
 \item (Hypergeometric Distribution) Draw $n$ items without replacement from $M$ items, of which $K$ are of one kind. The number $X$ of items of that kind has
 \begin{align}
@@ -109,16 +109,6 @@ p\brak{\vec{A}} = r_1\vec{A}+r_0\vec{I}, \qquad r_0=p\brak{0}, \quad r_1=p\brak{
 \label{eq:EE26BTECH11218-cb12-idem}
 \end{align}
 \solution Since $\vec{A}^2-\vec{A}=\vec{0}$, the term $q\brak{\vec{A}}\brak{\vec{A}^2-\vec{A}}$ vanishes. Putting $\lambda=0$ and $\lambda=1$ (the roots of $\lambda^2-\lambda$) gives $p\brak{0}=r_0$ and $p\brak{1}=r_1+r_0$. Also, if $\vec{A}\vec{v}=\mu\vec{v}$ then $\mu^2=\mu$, so the eigenvalues of $\vec{A}$ are $0$ or $1$.
-
-\item (Relations as Boolean Matrices) On a finite set $\cbrak{x_1,\dots,x_n}$ let $M_{ij}=1$ iff $x_iRx_j$. Then
-\begin{align}
-\text{reflexive} &\iff M_{ii}=1\ \forall i \nonumber \\
-\text{symmetric} &\iff \vec{M}=\vec{M}^{\top} \nonumber \\
-\text{transitive} &\iff \brak{\vec{M}^2>0}\subseteq\brak{\vec{M}>0}
-\label{eq:EE26BTECH11218-cb12-relation}
-\end{align}
-If $L_{ik}=1$ when word $i$ contains letter $k$, then ``have a letter in common'' is $\vec{M}=\brak{\vec{L}\vec{L}^{\top}>0}$.
-\solution $\brak{\vec{M}^2}_{ik}=\sum_jM_{ij}M_{jk}$ counts the $j$ with $x_iRx_jRx_k$, so it is positive iff a two-step chain exists, and transitivity requires $x_iRx_k$ for every such chain. Also, $\brak{\vec{L}\vec{L}^{\top}}_{ij}=\sum_kL_{ik}L_{jk}$ is the number of common letters, and it is symmetric by construction.
 
 \item (Adjugate and Cayley-Hamilton) For a $2\times2$ matrix $\vec{A}$, the Cayley-Hamilton theorem states
 \begin{align}
