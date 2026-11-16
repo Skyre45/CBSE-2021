@@ -10,22 +10,28 @@
         \item $\frac{14}{15}$
     \end{multicols}
 \end{enumerate}
-\hfill (CBSE~XII~\cbxiiyear)
+\hfill (12,\cbxiiyear)
 \\
 \solution
 Let $X_A,X_B\in\cbrak{0,1}$ indicate that $A$ and $B$ solve the question, with PMFs
 \begin{align}
-\brak{p_A\brak{0},\ p_A\brak{1}} = \brak{\frac{2}{3},\ \frac{1}{3}}, \qquad \brak{p_B\brak{0},\ p_B\brak{1}} = \brak{\frac{4}{5},\ \frac{1}{5}}
+p_A\brak{k} = \brak{\frac{1}{3}}^k\brak{\frac{2}{3}}^{1-k}, \qquad p_B\brak{k} = \brak{\frac{1}{5}}^k\brak{\frac{4}{5}}^{1-k}, \qquad k\in\cbrak{0,1}
 \end{align}
-From \eqref{eq:EE26BTECH11218-cb12-conv}, the PMF of $S=X_A+X_B$ is the convolution
+Using the Z-transform, the discrete probability sequences for $A$ and $B$ are represented by $P_A(z) = \frac{2}{3} + \frac{1}{3}z^{-1}$ and $P_B(z) = \frac{4}{5} + \frac{1}{5}z^{-1}$. From \eqref{eq:EE26BTECH11218-cb12-conv}, the PMF of the sum $S=X_A+X_B$ corresponds to the product of their Z-transforms:
 \begin{align}
-\brak{p_S\brak{0},\ p_S\brak{1},\ p_S\brak{2}} = \brak{\frac{8}{15},\ \frac{6}{15},\ \frac{1}{15}}
+P_S(z) &= P_A(z)P_B(z) = \brak{\frac{2}{3} + \frac{1}{3}z^{-1}}\brak{\frac{4}{5} + \frac{1}{5}z^{-1}} \\
+&= \frac{8}{15} + \frac{6}{15}z^{-1} + \frac{1}{15}z^{-2}
 \end{align}
-where $p_S\brak{1} = \frac{2}{3}\cdot\frac{1}{5}+\frac{1}{3}\cdot\frac{4}{5} = \frac{6}{15}$. The question is solved iff $S\ge1$, so
+where the coefficient of $z^{-1}$ is $p_S\brak{1} = \frac{6}{15}$. The question is solved iff $S\ge1$, so
 \begin{align}
 \pr{S\ge1} = 1-p_S\brak{0} = 1-\frac{8}{15} = \frac{7}{15}
 \end{align}
-which agrees with \eqref{eq:EE26BTECH11218-cb12-atleast}, $1-\brak{1-\frac{1}{3}}\brak{1-\frac{1}{5}}$. Hence the answer is option (a). The following code verifies this in \figref{fig:EE26BTECH11218-cb12_q1}.
+which agrees with \eqref{eq:EE26BTECH11218-cb12-atleast}, $1-\brak{1-\frac{1}{3}}\brak{1-\frac{1}{5}}$. Hence the answer is option (a).
+The following C program simulates one million trials of $X_A$ and $X_B$ and counts the values of $S$:
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq1.c}@*)
+\end{lstlisting}
+The Python program plots the simulated and exact PMFs as stem plots in \figref{fig:EE26BTECH11218-cb12_q1}:
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq1.py}@*)
 \end{lstlisting}
@@ -44,7 +50,7 @@ which agrees with \eqref{eq:EE26BTECH11218-cb12-atleast}, $1-\brak{1-\frac{1}{3}
         \item $\frac{7}{3}$
     \end{multicols}
 \end{enumerate}
-\hfill (CBSE~XII~\cbxiiyear)
+\hfill (12,\cbxiiyear)
 \\
 \solution
 From \eqref{eq:EE26BTECH11218-cb12-symm}, the directions of the lines are (the condition $x=5$ or $x=2$ means the $x$ component is $0$)
@@ -74,7 +80,7 @@ For $\alpha=\frac{2}{3},3,4$ the inner product is $-5,2,5$, all nonzero. Hence t
         \item $1$
     \end{multicols}
 \end{enumerate}
-\hfill (CBSE~XII~\cbxiiyear)
+\hfill (12,\cbxiiyear)
 \\
 \solution
 From \eqref{eq:EE26BTECH11218-cb12-improper}, $\tan\brak{\sin^{-1}x}=\frac{x}{\sqrt{1-x^2}}$, which is unbounded as $x\to1^{-}$, so the integral is improper. For $b<1$,
@@ -85,7 +91,12 @@ and the limit is
 \begin{align}
 \lim_{b\to1^{-}}\brak{1-\sqrt{1-b^2}} = 1
 \end{align}
-The substitution $x=\sin\theta$ gives the same value, $\int_0^{\pi/2}\tan\theta\cos\theta\,d\theta=\int_0^{\pi/2}\sin\theta\,d\theta=1$. Hence the answer is option (d). The following code verifies this in \figref{fig:EE26BTECH11218-cb12_q6}.
+The substitution $x=\sin\theta$ gives the same value, $\int_0^{\pi/2}\tan\theta\cos\theta\,d\theta=\int_0^{\pi/2}\sin\theta\,d\theta=1$. Hence the answer is option (d). Numerically, the trapezoidal rule \eqref{eq:EE26BTECH11218-cb12-trap} applied to $\int_0^b\frac{x}{\sqrt{1-x^2}}dx$ gives $0.5641$, $0.8589$ and $0.9553$ for $b=0.9,\,0.99,\,0.999$, equal to $1-\sqrt{1-b^2}$, and the values approach $1$ as $b\to1^{-}$.
+The following C program implements the difference equation for $b=0.9,\,0.99,\,0.999$ with $200000$ strips:
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq6.c}@*)
+\end{lstlisting}
+The Python program plots the integrand and the partial integrals, marking the results of the C program, in \figref{fig:EE26BTECH11218-cb12_q6}:
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq6.py}@*)
 \end{lstlisting}
@@ -95,39 +106,8 @@ The substitution $x=\sin\theta$ gives the same value, $\int_0^{\pi/2}\tan\theta\
     \caption{The integrand $\frac{x}{\sqrt{1-x^2}}$ and the partial integrals $\int_0^b\frac{x}{\sqrt{1-x^2}}dx$, which tend to $1$}
     \label{fig:EE26BTECH11218-cb12_q6}
 \end{figure}
-\item $\displaystyle\int\frac{e^x}{x+1}\sbrak{1+\brak{x+1}\log\brak{x+1}}dx$ equals
-\begin{enumerate}[label=\alph*), itemsep=0pt]
-    \begin{multicols}{4}
-        \item $\frac{e^x}{x+1}+c$
-        \item $e^x\frac{x}{x+1}+c$
-        \item $e^x\log\brak{x+1}+e^x+c$
-        \item $e^x\log\brak{x+1}+c$
-    \end{multicols}
-\end{enumerate}
-\hfill (CBSE~XII~\cbxiiyear)
-\\
-\solution
-The integrand is
-\begin{align}
-\frac{e^x}{x+1}\sbrak{1+\brak{x+1}\log\brak{x+1}} &= e^x\sbrak{\log\brak{x+1}+\frac{1}{x+1}} \\
-&= e^x\brak{f+f'}, \quad f\brak{x}=\log\brak{x+1}
-\end{align}
-From \eqref{eq:EE26BTECH11218-cb12-expf},
-\begin{align}
-\int e^x\brak{f+f'}dx = e^xf+c = e^x\log\brak{x+1}+c
-\end{align}
-Hence the answer is option (d). Numerically, only option (d) has $F\brak{b}-F\brak{0}$ equal to the integral of the integrand from $0$ to $b$ (for $b=1$ both are $1.8842$). The following code verifies this in \figref{fig:EE26BTECH11218-cb12_q7}.
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq7.py}@*)
-\end{lstlisting}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.70\linewidth]{figs/cbXIIq7.pdf}
-    \caption{Numerical integral of the integrand from $0$ to $b$ compared with $F\brak{b}-F\brak{0}$ for the four options}
-    \label{fig:EE26BTECH11218-cb12_q7}
-\end{figure}
 \item The integrating factor of the differential equation $x\diff{y}{x}-y=\log x$ is \underline{\hspace{2cm}}.
-\hfill (CBSE~XII~\cbxiiyear)
+\hfill (12,\cbxiiyear)
 \\
 \solution
 In the form $\diff{y}{x}+Py=Q$ we have $P=-\frac{1}{x}$ and $Q=\frac{\log x}{x}$. From \eqref{eq:EE26BTECH11218-cb12-linode},
@@ -138,29 +118,43 @@ Then $\diff{}{x}\brak{\frac{y}{x}}=\frac{\log x}{x^2}$, and integrating by parts
 \begin{align}
 \frac{y}{x} = -\frac{\log x+1}{x}+C \implies y = -\log x-1+Cx
 \end{align}
-The integrating factor is $\frac{1}{x}$. The following code verifies this with a numerical solution of the ODE in \figref{fig:EE26BTECH11218-cb12_q14}.
+The integrating factor is $\frac{1}{x}$. To check the solution numerically, write the ODE as $y'=F\brak{x,y}=\frac{y+\log x}{x}$. The forward-difference equation \eqref{eq:EE26BTECH11218-cb12-euler} is
+\begin{align}
+y_{k+1} = y_k+h\,\frac{y_k+\log x_k}{x_k}, \qquad x_0=1, \ y_0=1
+\end{align}
+which corresponds to $C=2$. With $h=0.01$ the first step is $y_1=1.01$, against the exact $y\brak{1.01}=1.01005$. At $x=5$ the errors are $0.1185$, $0.0596$, $0.0299$ and $0.0150$ for $h=0.1,\,0.05,\,0.025,\,0.0125$: the error halves when $h$ halves, as expected for a first-order method.
+The following C program implements the forward-difference equation, and prints the errors above:
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq14.c}@*)
+\end{lstlisting}
+The Python program plots its solution against the closed form in \figref{fig:EE26BTECH11218-cb12_q14}:
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq14.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.70\linewidth]{figs/cbXIIq14.pdf}
-    \caption{Numerical solution with $y\brak{1}=1$ (so $C=2$) against the closed form}
+    \caption{Euler solution with $y\brak{1}=1$ (so $C=2$) and $h=0.01$ against the closed form}
     \label{fig:EE26BTECH11218-cb12_q14}
 \end{figure}
 \item From a pack of $52$ cards, $3$ cards are drawn at random (without replacement). The probability that they are two red cards and one black card is \underline{\hspace{2cm}}.
-\hfill (CBSE~XII~\cbxiiyear)
+\hfill (12,\cbxiiyear)
 \\
 \solution
 Let $X$ be the number of red cards among the three drawn. From \eqref{eq:EE26BTECH11218-cb12-hyper} with $M=52$, $K=26$, $n=3$,
 \begin{align}
-\pr{X=2} = \frac{\binom{26}{2}\binom{26}{1}}{\binom{52}{3}} = \frac{325\times26}{22100} = \frac{13}{34}
+p_X\brak{k} = \frac{\binom{26}{k}\binom{26}{3-k}}{\binom{52}{3}}, \qquad k=0,1,2,3
 \end{align}
-The complete PMF is
+and the required probability is
 \begin{align}
-\brak{p_X\brak{0},\ p_X\brak{1},\ p_X\brak{2},\ p_X\brak{3}} = \brak{\frac{2}{17},\ \frac{13}{34},\ \frac{13}{34},\ \frac{2}{17}}
+\pr{X=2} = p_X\brak{2} = \frac{\binom{26}{2}\binom{26}{1}}{\binom{52}{3}} = \frac{325\times26}{22100} = \frac{13}{34}
 \end{align}
-which sums to $1$. The following code verifies this in \figref{fig:EE26BTECH11218-cb12_q15}.
+The same equation gives $p_X\brak{0}=p_X\brak{3}=\frac{2}{17}$ and $p_X\brak{1}=p_X\brak{2}=\frac{13}{34}$, which sum to $1$.
+The following C program draws three cards without replacement one million times and counts the red cards:
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq15.c}@*)
+\end{lstlisting}
+The Python program plots the simulated and exact PMFs as stem plots in \figref{fig:EE26BTECH11218-cb12_q15}:
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq15.py}@*)
 \end{lstlisting}
@@ -171,7 +165,7 @@ which sums to $1$. The following code verifies this in \figref{fig:EE26BTECH1121
     \label{fig:EE26BTECH11218-cb12_q15}
 \end{figure}
 \item If $\myvec{4 & x+2 \\ 2x-3 & x+1}$ is a symmetric matrix, then find the value of $x$.
-\hfill (CBSE~XII~\cbxiiyear)
+\hfill (12,\cbxiiyear)
 \\
 \solution
 Let the matrix be $\vec{A}$. From \eqref{eq:EE26BTECH11218-cb12-symskew}, the skew-symmetric part is
@@ -193,18 +187,25 @@ The following code verifies this in \figref{fig:EE26BTECH11218-cb12_q19a}.
     \label{fig:EE26BTECH11218-cb12_q19a}
 \end{figure}
 \item If $\vec{A}$ is a square matrix such that $\vec{A}^2=\vec{A}$, then find $\brak{2\vec{I}+\vec{A}}^3-19\vec{A}$.
-\hfill (CBSE~XII~\cbxiiyear)
+\hfill (12,\cbxiiyear)
 \\
 \solution
-Let $p\brak{\lambda}=\brak{2+\lambda}^3-19\lambda=\lambda^3+6\lambda^2-7\lambda+8$. Dividing by $\lambda^2-\lambda$,
+From \eqref{eq:EE26BTECH11218-cb12-idem}, the eigenvalues of $\vec{A}$ are $0$ or $1$: if $\vec{A}\vec{v}=\lambda\vec{v}$ with $\vec{v}\ne\vec{0}$, then $\vec{A}^2=\vec{A}$ gives $\lambda^2\vec{v}=\lambda\vec{v}$, so $\lambda^2-\lambda=0$.
+
+For the matrix polynomial $\brak{2\vec{I}+\vec{A}}^3-19\vec{A}$, its action on an eigenvector $\vec{v}$ gives the scalar polynomial
 \begin{align}
-p\brak{\lambda} = \brak{\lambda^2-\lambda}\brak{\lambda+7}+8
+p\brak{\lambda} = \brak{2+\lambda}^3 - 19\lambda
 \end{align}
-so $r_1=0$ and $r_0=8$. Since $\vec{A}^2-\vec{A}=\vec{0}$, from \eqref{eq:EE26BTECH11218-cb12-idem},
+Evaluating $p\brak{\lambda}$ at the two possible eigenvalues,
 \begin{align}
-\brak{2\vec{I}+\vec{A}}^3-19\vec{A} = \brak{\vec{A}^2-\vec{A}}\brak{\vec{A}+7\vec{I}}+8\vec{I} = 8\vec{I}
+p\brak{0} &= \brak{2+0}^3 - 19\brak{0} = 8 \\
+p\brak{1} &= \brak{2+1}^3 - 19\brak{1} = 27 - 19 = 8
 \end{align}
-This agrees with the eigenvalues of $\vec{A}$ being $0$ or $1$, where $p\brak{0}=p\brak{1}=8$. The following code verifies this for an orthogonal and an oblique projection matrix in \figref{fig:EE26BTECH11218-cb12_q19b}.
+Since $p\brak{0}=p\brak{1}=8$, and an idempotent matrix is diagonalizable (so that $p\brak{\vec{A}}=\vec{V}p\brak{\vec{D}}\vec{V}^{-1}$), \eqref{eq:EE26BTECH11218-cb12-idem} gives
+\begin{align}
+\brak{2\vec{I}+\vec{A}}^3 - 19\vec{A} = 8\vec{I}
+\end{align}
+The following code verifies this for an idempotent matrix in \figref{fig:EE26BTECH11218-cb12_q19b}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq19b.py}@*)
 \end{lstlisting}
@@ -215,9 +216,28 @@ This agrees with the eigenvalues of $\vec{A}$ being $0$ or $1$, where $p\brak{0}
     \label{fig:EE26BTECH11218-cb12_q19b}
 \end{figure}
 \item Let $W$ denote the set of words in the English dictionary. Define the relation $R$ by $R=\cbrak{\brak{x,y}\in W\times W : x \text{ and } y \text{ have at least one letter in common}}$. Show that $R$ is reflexive and symmetric, but not transitive.
-\hfill (CBSE~XII~\cbxiiyear)
+\hfill (12,\cbxiiyear)
 \\
-
+\solution
+From \eqref{eq:EE26BTECH11218-cb12-relation}, take $\vec{M}=\brak{\vec{L}\vec{L}^{\top}>0}$, where $L_{ik}=1$ iff word $i$ contains letter $k$.
+\begin{enumerate}
+\item \textbf{Reflexive:} $\brak{\vec{L}\vec{L}^{\top}}_{ii}=\sum_kL_{ik}^2$ is the number of distinct letters of word $i$, which is at least $1$ for every word, so $M_{ii}=1$.
+\item \textbf{Symmetric:} $\vec{L}\vec{L}^{\top}$ is symmetric, so $\vec{M}=\vec{M}^{\top}$.
+\item \textbf{Not transitive:} take $x=$ ``at'', $y=$ ``tip'', $z=$ ``pin''. The words ``at'' and ``tip'' share $t$, and ``tip'' and ``pin'' share $i,p$, so $\brak{\vec{M}^2}_{xz}>0$. But ``at'' and ``pin'' have no common letter, so $M_{xz}=0$ and $\brak{\vec{M}^2>0}\not\subseteq\brak{\vec{M}>0}$.
+\end{enumerate}
+The following code verifies this on a small set of words in \figref{fig:EE26BTECH11218-cb12_q21a}.
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq21a.py}@*)
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{figs/cbXIIq21a.pdf}
+    \caption{$\vec{M}$ and $\brak{\vec{M}^2>0}$ for a few words; crosses mark violations of transitivity}
+    \label{fig:EE26BTECH11218-cb12_q21a}
+\end{figure}
+\item For the matrix $\vec{A}=\myvec{2 & 3 \\ -4 & -6}$, verify $\vec{A}\brak{\mathrm{adj}\,\vec{A}} = \brak{\mathrm{adj}\,\vec{A}}\vec{A} = \abs{\vec{A}}\vec{I}$.
+\hfill (12,\cbxiiyear)
+\\
 \solution
 Here $\mathrm{tr}\brak{\vec{A}} = 2-6 = -4$ and $\abs{\vec{A}} = -12+12 = 0$, so $\vec{A}$ is singular and the inverse formula cannot be used. From \eqref{eq:EE26BTECH11218-cb12-ch}, Cayley-Hamilton gives
 \begin{align}
@@ -243,21 +263,19 @@ Geometrically, the columns of $\mathrm{adj}\,\vec{A}$ are multiples of $\brak{3,
     \label{fig:EE26BTECH11218-cb12_q22}
 \end{figure}
 \item A bag contains $19$ tickets numbered $1$ to $19$. A ticket is drawn at random and then another ticket is drawn without replacing the first one. Find the probability distribution of the number of even numbers on the tickets.
-\hfill (CBSE~XII~\cbxiiyear)
+\hfill (12,\cbxiiyear)
 \\
 \solution
 Let $X$ be the number of even tickets. Among $1,\dots,19$ there are $9$ even and $10$ odd tickets, so from \eqref{eq:EE26BTECH11218-cb12-hyper} with $M=19$, $K=9$, $n=2$,
 \begin{align}
 p_X\brak{k} = \frac{\binom{9}{k}\binom{10}{2-k}}{\binom{19}{2}}, \quad \binom{19}{2}=171
 \end{align}
-\begin{center}
-\begin{tabular}{|c|c|c|c|}
-\hline
-$k$ & $0$ & $1$ & $2$ \\ \hline
-$p_X\brak{k}$ & $\frac{45}{171}=\frac{5}{19}$ & $\frac{90}{171}=\frac{10}{19}$ & $\frac{36}{171}=\frac{4}{19}$ \\ \hline
-\end{tabular}
-\end{center}
-The probabilities sum to $1$, and the mean is $E\sbrak{X}=\frac{2\cdot9}{19}=\frac{18}{19}$. The following code verifies this in \figref{fig:EE26BTECH11218-cb12_q26a}.
+so $p_X\brak{0}=\frac{45}{171}=\frac{5}{19}$, $p_X\brak{1}=\frac{90}{171}=\frac{10}{19}$ and $p_X\brak{2}=\frac{36}{171}=\frac{4}{19}$. The probabilities sum to $1$, and the mean is $E\sbrak{X}=\frac{2\cdot9}{19}=\frac{18}{19}$.
+The following C program draws two tickets without replacement one million times and counts the even numbers:
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq26a.c}@*)
+\end{lstlisting}
+The Python program plots the simulated and exact PMFs as stem plots in \figref{fig:EE26BTECH11218-cb12_q26a}:
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq26a.py}@*)
 \end{lstlisting}
@@ -268,21 +286,19 @@ The probabilities sum to $1$, and the mean is $E\sbrak{X}=\frac{2\cdot9}{19}=\fr
     \label{fig:EE26BTECH11218-cb12_q26a}
 \end{figure}
 \item Find the probability distribution of the number of successes in two tosses of a die, where a success is defined as ``number greater than $5$''.
-\hfill (CBSE~XII~\cbxiiyear)
+\hfill (12,\cbxiiyear)
 \\
 \solution
 A success is the face $6$, so $p=\frac{1}{6}$. Let $X$ be the number of successes in $n=2$ independent tosses. From \eqref{eq:EE26BTECH11218-cb12-binom},
 \begin{align}
 p_X\brak{k} = \binom{2}{k}\brak{\frac{1}{6}}^k\brak{\frac{5}{6}}^{2-k}
 \end{align}
-\begin{center}
-\begin{tabular}{|c|c|c|c|}
-\hline
-$k$ & $0$ & $1$ & $2$ \\ \hline
-$p_X\brak{k}$ & $\frac{25}{36}$ & $\frac{10}{36}=\frac{5}{18}$ & $\frac{1}{36}$ \\ \hline
-\end{tabular}
-\end{center}
-This is also the convolution $\brak{\frac{5}{6},\ \frac{1}{6}}*\brak{\frac{5}{6},\ \frac{1}{6}}$, with mean $np=\frac{1}{3}$ and variance $np\brak{1-p}=\frac{5}{18}$. The following code verifies this in \figref{fig:EE26BTECH11218-cb12_q26b}.
+so $p_X\brak{0}=\frac{25}{36}$, $p_X\brak{1}=\frac{10}{36}=\frac{5}{18}$ and $p_X\brak{2}=\frac{1}{36}$. From \eqref{eq:EE26BTECH11218-cb12-binom}, using the Z-transform, the sum of two independent Bernoulli trials corresponds to the product $Y(z) = \brak{\frac{5}{6}+\frac{1}{6}z^{-1}}^2$, which yields the PMF coefficients directly. The distribution has mean $np=\frac{1}{3}$ and variance $np\brak{1-p}=\frac{5}{18}$.
+The following C program simulates one million pairs of tosses and counts the sixes:
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq26b.c}@*)
+\end{lstlisting}
+The Python program plots the simulated and exact PMFs as stem plots in \figref{fig:EE26BTECH11218-cb12_q26b}:
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq26b.py}@*)
 \end{lstlisting}
@@ -293,7 +309,7 @@ This is also the convolution $\brak{\frac{5}{6},\ \frac{1}{6}}*\brak{\frac{5}{6}
     \label{fig:EE26BTECH11218-cb12_q26b}
 \end{figure}
 \item Find the equation of the line joining $A\brak{1,3}$ and $B\brak{0,0}$ using determinants. Also find $k$ if $D\brak{k,0}$ is a point such that the area of $\triangle ABD$ is $3$ square units.
-\hfill (CBSE~XII~\cbxiiyear)
+\hfill (12,\cbxiiyear)
 \\
 \solution
 From \eqref{eq:EE26BTECH11218-cb12-det}, the line $AB$ is
@@ -317,28 +333,8 @@ The following code verifies this in \figref{fig:EE26BTECH11218-cb12_q28b}.
     \caption{The line $3x-y=0$ and the triangles $ABD$ for $k=\pm2$}
     \label{fig:EE26BTECH11218-cb12_q28b}
 \end{figure}
-\item Prove that three points $A$, $B$ and $C$ with position vectors $\vec{a}$, $\vec{b}$ and $\vec{c}$ respectively are collinear if and only if $\brak{\vec{b}\times\vec{c}}+\brak{\vec{c}\times\vec{a}}+\brak{\vec{a}\times\vec{b}}=\vec{0}$.
-\hfill (CBSE~XII~\cbxiiyear)
-\\
-\solution
-Let $\vec{S}=\vec{b}\times\vec{c}+\vec{c}\times\vec{a}+\vec{a}\times\vec{b}$. From \eqref{eq:EE26BTECH11218-cb12-cross},
-\begin{align}
-\vec{S} = \brak{\vec{b}-\vec{a}}\times\brak{\vec{c}-\vec{a}}
-\end{align}
-This vanishes iff $\vec{b}-\vec{a}$ and $\vec{c}-\vec{a}$ are parallel, that is (for $A\ne B$) iff $\vec{c}-\vec{a}=\kappa\brak{\vec{b}-\vec{a}}$ for some $\kappa$, which says that $C$ lies on the line $AB$. If $A=B$ both statements hold trivially. Hence $A,B,C$ are collinear iff $\vec{S}=\vec{0}$. Moreover $\norm{\vec{S}}=2\,\mathrm{area}\brak{\triangle ABC}$.
-
-For $\vec{a}=\brak{1,\ 0,\ 2}^{\top}$ and $\vec{b}=\brak{3,\ 1,\ 1}^{\top}$, the point $\vec{c}=\vec{a}+2.5\brak{\vec{b}-\vec{a}}$ gives $\vec{S}=\vec{0}$, while $\vec{c}=\brak{2,\ 3,\ 4}^{\top}$ gives $\vec{S}=\brak{5,\ -5,\ 5}^{\top}$ and $\frac{1}{2}\norm{\vec{S}}=4.33$, which equals the area from Heron's formula. The following code verifies this in \figref{fig:EE26BTECH11218-cb12_q29}.
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq29.py}@*)
-\end{lstlisting}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.95\linewidth]{figs/cbXIIq29.pdf}
-    \caption{Collinear points ($\vec{S}=\vec{0}$) and a triangle with $\vec{S}$ normal to its plane}
-    \label{fig:EE26BTECH11218-cb12_q29}
-\end{figure}
 \item Find the shortest distance between the lines $\frac{x-1}{2}=\frac{y+1}{3}=z$ and $\frac{x+1}{5}=\frac{y-2}{1},\ z=2$, and hence write whether the lines are intersecting or not.
-\hfill (CBSE~XII~\cbxiiyear)
+\hfill (12,\cbxiiyear)
 \\
 \solution
 From \eqref{eq:EE26BTECH11218-cb12-symm}, the lines are $\vec{x}=\vec{a}_1+s\vec{m}_1$ and $\vec{x}=\vec{a}_2+t\vec{m}_2$ with
@@ -348,11 +344,15 @@ From \eqref{eq:EE26BTECH11218-cb12-symm}, the lines are $\vec{x}=\vec{a}_1+s\vec
 \end{align}
 Let $\vec{M}=\myvec{\vec{m}_1 & \vec{m}_2}$ and $\vec{z}=\myvec{s \\ -t}$. The normal equations $\vec{M}^{\top}\vec{M}\vec{z}=\vec{M}^{\top}\vec{b}$ in \eqref{eq:EE26BTECH11218-cb12-skew} have the inner products $\vec{m}_1^{\top}\vec{m}_1=14$, $\vec{m}_1^{\top}\vec{m}_2=13$, $\vec{m}_2^{\top}\vec{m}_2=26$ on the left and $\vec{m}_1^{\top}\vec{b}=7$, $\vec{m}_2^{\top}\vec{b}=-7$ on the right:
 \begin{align}
-\myvec{14 & 13 \\ 13 & 26}\myvec{s \\ -t} = \myvec{7 \\ -7} \implies s=\frac{7}{5}, \quad t=\frac{63}{65}
+\myvec{14 & 13 \\ 13 & 26}\myvec{s \\ -t} = \myvec{7 \\ -7}
 \end{align}
-The closest points are $\brak{3.8,\ 3.2,\ 1.4}^{\top}$ on the first line and $\brak{3.846,\ 2.969,\ 2}^{\top}$ on the second. The distance is $\norm{\vec{M}\vec{z}-\vec{b}}$, and from \eqref{eq:EE26BTECH11218-cb12-skew-cross}, with $\vec{m}_1\times\vec{m}_2=\brak{-1,\ 5,\ -13}^{\top}$ and $\vec{b}^{\top}\brak{\vec{m}_1\times\vec{m}_2}=-9$,
+Gauss elimination on the augmented matrix, with $R_2\to R_2-\frac{13}{14}R_1$, gives
 \begin{align}
-d = \frac{\abs{-9}}{\sqrt{195}} = \frac{9}{\sqrt{195}} \approx 0.645
+\augvec{2}{1}{14 & 13 & 7 \\ 13 & 26 & -7} \longrightarrow \augvec{2}{1}{14 & 13 & 7 \\ 0 & \frac{195}{14} & -\frac{27}{2}}
+\end{align}
+so $-t=-\frac{27}{2}\cdot\frac{14}{195}=-\frac{63}{65}$ and $s=\frac{1}{14}\brak{7+13\cdot\frac{63}{65}}=\frac{7}{5}$. The closest points are $\brak{3.8,\ 3.2,\ 1.4}^{\top}$ on the first line and $\brak{3.846,\ 2.969,\ 2}^{\top}$ on the second. The residual is
+\begin{align}
+\vec{M}\vec{z}-\vec{b} = \frac{9}{195}\myvec{-1 \\ 5 \\ -13}, \qquad d = \norm{\vec{M}\vec{z}-\vec{b}} = \frac{9}{195}\sqrt{195} = \frac{9}{\sqrt{195}} \approx 0.645
 \end{align}
 Since $d\ne0$, the lines do \textbf{not} intersect (they are skew). The following code verifies this in \figref{fig:EE26BTECH11218-cb12_q30a}.
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
@@ -365,7 +365,7 @@ Since $d\ne0$, the lines do \textbf{not} intersect (they are skew). The followin
     \label{fig:EE26BTECH11218-cb12_q30a}
 \end{figure}
 \item Find the equation of the plane through the line of intersection of the planes $\vec{r}\cdot\brak{\hat{i}+3\hat{j}}+6=0$ and $\vec{r}\cdot\brak{3\hat{i}-\hat{j}-4\hat{k}}=0$, which is at a unit distance from the origin.
-\hfill (CBSE~XII~\cbxiiyear)
+\hfill (12,\cbxiiyear)
 \\
 \solution
 The planes are $\vec{n}_1^{\top}\vec{x}+e_1=0$ and $\vec{n}_2^{\top}\vec{x}+e_2=0$ with
@@ -374,7 +374,8 @@ The planes are $\vec{n}_1^{\top}\vec{x}+e_1=0$ and $\vec{n}_2^{\top}\vec{x}+e_2=
 \end{align}
 From \eqref{eq:EE26BTECH11218-cb12-pencil}, the planes through the line of intersection have $\vec{n}=\vec{n}_1+\lambda\vec{n}_2$ and $e=6$. From \eqref{eq:EE26BTECH11218-cb12-plane-dist}, the distance from the origin is $1$ iff $\norm{\vec{n}}^2=e^2$,
 \begin{align}
-\norm{\vec{n}_1+\lambda\vec{n}_2}^2 = \vec{n}_1^{\top}\vec{n}_1+2\lambda\vec{n}_1^{\top}\vec{n}_2+\lambda^2\vec{n}_2^{\top}\vec{n}_2 = 10+0+26\lambda^2 = 36 \implies \lambda=\pm1
+\norm{\vec{n}_1+\lambda\vec{n}_2}^2 &= \vec{n}_1^{\top}\vec{n}_1+2\lambda\vec{n}_1^{\top}\vec{n}_2+\lambda^2\vec{n}_2^{\top}\vec{n}_2 \\
+&= 10+0+26\lambda^2 = 36 \implies \lambda=\pm1
 \end{align}
 \begin{align}
 \lambda=1: \ 4x+2y-4z+6=0 \implies 2x+y-2z+3=0 \\
@@ -391,29 +392,34 @@ Both are at distance $\frac{3}{3}=1$ from the origin. The following code verifie
     \label{fig:EE26BTECH11218-cb12_q30b}
 \end{figure}
 \item A bag contains $5$ red and $4$ black balls, and a second bag contains $3$ red and $6$ black balls. One of the two bags is selected at random and two balls are drawn at random (without replacement), both of which are found to be red. Find the probability that these two balls are drawn from the second bag.
-\hfill (CBSE~XII~\cbxiiyear)
+\hfill (12,\cbxiiyear)
 \\
 \solution
-Let $B_i$ be the event that bag $i$ is chosen, with $\pr{B_i}=\frac{1}{2}$, and let $E$ be the event that both balls are red. From \eqref{eq:EE26BTECH11218-cb12-hyper},
+Let $B\in\cbrak{1,2}$ be the random variable for the bag chosen, with $p_B\brak{1}=p_B\brak{2}=\frac{1}{2}$, and let $X$ be the number of red balls among the two drawn. We are told that $X=2$ and want $\pr{B=2\mid X=2}$. Given $B=b$, $X$ is hypergeometric, so from \eqref{eq:EE26BTECH11218-cb12-hyper},
 \begin{align}
-\pr{E\mid B_1} = \frac{\binom{5}{2}}{\binom{9}{2}} = \frac{10}{36}, \qquad \pr{E\mid B_2} = \frac{\binom{3}{2}}{\binom{9}{2}} = \frac{3}{36}
+p_{X\mid B}\brak{2\mid1} = \frac{\binom{5}{2}}{\binom{9}{2}} = \frac{10}{36}, \qquad p_{X\mid B}\brak{2\mid2} = \frac{\binom{3}{2}}{\binom{9}{2}} = \frac{3}{36}
 \end{align}
 From \eqref{eq:EE26BTECH11218-cb12-bayes},
 \begin{align}
-\pr{B_2\mid E} = \frac{\frac{1}{2}\cdot\frac{3}{36}}{\frac{1}{2}\cdot\frac{10}{36}+\frac{1}{2}\cdot\frac{3}{36}} = \frac{3}{13}
+\pr{B=2\mid X=2} = \frac{p_{X\mid B}\brak{2\mid2}\,p_B\brak{2}}{\sum_{b}p_{X\mid B}\brak{2\mid b}\,p_B\brak{b}} = \frac{\frac{3}{36}\cdot\frac{1}{2}}{\frac{10}{36}\cdot\frac{1}{2}+\frac{3}{36}\cdot\frac{1}{2}} = \frac{3}{13}
 \end{align}
-The following code verifies this in \figref{fig:EE26BTECH11218-cb12_q32}.
+
+The following C program simulates the experiment and estimates $\pr{B=b\mid X=2}$ from the trials in which both balls are red:
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq32.c}@*)
+\end{lstlisting}
+The Python program plots the simulated and exact posteriors as stem plots in \figref{fig:EE26BTECH11218-cb12_q32}:
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq32.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.70\linewidth]{figs/cbXIIq32.pdf}
-    \caption{Prior and posterior probabilities of the two bags}
+    \caption{Posterior probabilities of the two bags: Simulation vs Analysis}
     \label{fig:EE26BTECH11218-cb12_q32}
 \end{figure}
 \item If the area between the curves $x=y^2$ and $x=4$ is divided into two equal parts by the line $x=a$, then find the value of $a$ using integration.
-\hfill (CBSE~XII~\cbxiiyear)
+\hfill (12,\cbxiiyear)
 \\
 \solution
 From \eqref{eq:EE26BTECH11218-cb12-area}, the total area is $A\brak{4}=\frac{4}{3}\cdot4^{3/2}=\frac{32}{3}$. The line $x=a$ halves it iff
@@ -423,7 +429,12 @@ A\brak{a} = \frac{4}{3}a^{3/2} = \frac{1}{2}\cdot\frac{32}{3} \implies a^{3/2} =
 \begin{align}
 \therefore a = 4^{2/3} = 2^{4/3} \approx 2.52
 \end{align}
-The following code solves $A\brak{a}=\frac{1}{2}A\brak{4}$ numerically and verifies this in \figref{fig:EE26BTECH11218-cb12_q35a}.
+Numerically, write the same area with $y$ as the variable, $A\brak{a}=\int_{-\sqrt{a}}^{\sqrt{a}}\brak{a-y^2}dy$, whose integrand is smooth, evaluate it by the trapezoidal rule \eqref{eq:EE26BTECH11218-cb12-trap}, and solve $A\brak{a}=\frac{1}{2}A\brak{4}$ by bisection.
+The following C program evaluates $A\brak{a}$ by the trapezoidal rule and finds $a=2.5198$ by bisection:
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq35a.c}@*)
+\end{lstlisting}
+The Python program plots the region in \figref{fig:EE26BTECH11218-cb12_q35a}:
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq35a.py}@*)
 \end{lstlisting}
@@ -432,27 +443,5 @@ The following code solves $A\brak{a}=\frac{1}{2}A\brak{4}$ numerically and verif
     \includegraphics[width=0.70\linewidth]{figs/cbXIIq35a.pdf}
     \caption{Region between $x=y^2$ and $x=4$ divided equally by $x=a$}
     \label{fig:EE26BTECH11218-cb12_q35a}
-\end{figure}
-\item Find $\displaystyle\int\frac{x}{\brak{x-1}^2\brak{x+2}}dx$.
-\hfill (CBSE~XII~\cbxiiyear)
-\\
-\solution
-From \eqref{eq:EE26BTECH11218-cb12-partial}, $x = A\brak{x-1}\brak{x+2}+B\brak{x+2}+C\brak{x-1}^2$. Matching the coefficients of $x^2$, $x$ and $1$ gives one equation per row ($A+C=0$, $A+B-2C=1$ and $-2A+2B+C=0$), that is,
-\begin{align}
-\myvec{1 & 0 & 1 \\ 1 & 1 & -2 \\ -2 & 2 & 1}\myvec{A \\ B \\ C} = \myvec{0 \\ 1 \\ 0} \implies \myvec{A \\ B \\ C} = \myvec{\frac{2}{9} \\ \frac{1}{3} \\ -\frac{2}{9}}
-\end{align}
-Hence
-\begin{align}
-\int\frac{x\,dx}{\brak{x-1}^2\brak{x+2}} = \frac{2}{9}\ln\abs{x-1}-\frac{1}{3\brak{x-1}}-\frac{2}{9}\ln\abs{x+2}+c
-\end{align}
-Let $f\brak{x}=\frac{x}{\brak{x-1}^2\brak{x+2}}$ and let $F\brak{x}$ be the antiderivative above. The following code checks that $F'\brak{x}=f\brak{x}$ and that $\int_2^5 f\brak{x}\,dx = 0.4337 = F\brak{5}-F\brak{2}$, as shown in \figref{fig:EE26BTECH11218-cb12_q35b}.
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXIIq35b.py}@*)
-\end{lstlisting}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.95\linewidth]{figs/cbXIIq35b.pdf}
-    \caption{Partial fractions of the integrand and its antiderivative}
-    \label{fig:EE26BTECH11218-cb12_q35b}
 \end{figure}
 \end{enumerate}

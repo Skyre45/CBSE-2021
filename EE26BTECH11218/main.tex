@@ -1,7 +1,7 @@
-\documentclass[journal]{IEEEtran}
+\documentclass{article}
 \usepackage[a5paper, margin=10mm]{geometry}
 %\usepackage{lmodern} % Ensure lmodern is loaded for pdflatex
-\usepackage{tfrupee} % Include tfrupee package
+%\usepackage{tfrupee} % Include tfrupee package
 
 
 \setlength{\headheight}{1cm} % Set the height of the header box
@@ -11,9 +11,11 @@
 %\usepackage[a5paper, top=10mm, bottom=10mm, left=10mm, right=10mm]{geometry}
 
 %
+\usepackage{xparse}
 \usepackage{gvv-book}
 \usepackage{gvv}
 \raggedbottom
+\setlength{\emergencystretch}{3em}
 
 %\usepackage{hyperref}
 \hypersetup{
@@ -66,17 +68,17 @@
 %\renewcommand{\thefigure}{\theenumi}
 \renewcommand{\thetable}{\theenumi}
 
-\section{CBSE X 2021}
+\section{10}
 \subsection{Formulae}
-\input{chapters/cbX/cbX-formulae.tex}
+\input{chapters/10/10-formulae.tex}
 \newpage
 \subsection{Problems}
-\input{chapters/cbX/cbX-problems.tex}
+\input{chapters/10/10-problems.tex}
 \newpage
-\section{CBSE XII \cbxiiyear}
+\section{12}
 \subsection{Formulae}
-\input{chapters/cbXII/cbXII-formulae.tex}
+\input{chapters/12/12-formulae.tex}
 \newpage
 \subsection{Problems}
-\input{chapters/cbXII/cbXII-problems.tex}
+\input{chapters/12/12-problems.tex}
 \end{document}

@@ -16,11 +16,11 @@ b = P2 - P1
 M = np.block([m1, m2])
 x, res, rank, sv = LA.lstsq(M, b, rcond=None)      # minimise ||M x - b||,  x = (s, -t)
 d_ls = LA.norm(M @ x - b)
-n = np.cross(m1.ravel(), m2.ravel())
-d_cross = abs(b.ravel() @ n) / LA.norm(n)
-print("m1 x m2 =", n, " (b.n) =", b.ravel() @ n)
+Qm, _ = LA.qr(M)                                    # orthonormal basis of the column space of M
+d_proj = LA.norm(b - Qm @ (Qm.T @ b))               # part of b orthogonal to both directions
+print("residual M z - b =", (M @ x - b).ravel(), " = (9/195)(-1, 5, -13)")
 print("(s, -t) =", x.ravel(), " normal equations:", LA.solve(M.T @ M, M.T @ b).ravel())
-print("distance (least squares) =", d_ls, " (triple product) =", d_cross, " 9/sqrt(195) =", 9 / np.sqrt(195))
+print("distance (least squares) =", d_ls, " (projection) =", d_proj, " 9/sqrt(195) =", 9 / np.sqrt(195))
 print("lines intersect:", bool(d_ls < 1e-9))
 
 Q1 = P1 + x[0, 0] * m1                              # closest points

@@ -89,12 +89,12 @@ The number of multiples of both $a$ and $b$ in $\cbrak{1,2,\dots,N}$ is
 \left\lfloor\frac{N}{\operatorname{lcm}\brak{a,b}}\right\rfloor
 \label{eq:EE26BTECH11218-cb-lcm}
 \end{align}
-and the number of outcomes when $k$ dice are thrown is
+The Z-transform of a sequence $x\brak{n}$ is $X\brak{z}=\sum_{n}x\brak{n}z^{-n}$. The Z-transform of the convolution of two sequences is the product of their Z-transforms, and $X\brak{1}=\sum_nx\brak{n}$ is the sum of the sequence. Hence the number of outcomes when $k$ dice are thrown is obtained by evaluating the product of their Z-transforms at $z=1$:
 \begin{align}
-\sbrak{\brak{x+x^2+\cdots+x^6}^k}_{x=1} = 6^k
+\sbrak{\brak{z^{-1}+z^{-2}+\cdots+z^{-6}}^k}_{z=1} = 6^k
 \label{eq:EE26BTECH11218-cb-dice-count}
 \end{align}
-\solution The coefficient of $x^n$ in $\brak{x+\cdots+x^6}^k$ is the number of outcomes of the $k$ dice with sum $n$, since multiplying generating functions is the discrete convolution of the counts. Setting $x=1$ adds up the counts of all sums, giving \eqref{eq:EE26BTECH11218-cb-dice-count}. A number is a multiple of $a$ and $b$ iff it is a multiple of $\operatorname{lcm}\brak{a,b}$, which gives \eqref{eq:EE26BTECH11218-cb-lcm}.
+\solution For one die the sequence of counts is $x\brak{n}=1$ for $n=1,\dots,6$, so $X\brak{z}=z^{-1}+z^{-2}+\cdots+z^{-6}$. The coefficient of $z^{-n}$ in $\brak{z^{-1}+\cdots+z^{-6}}^k$ is the number of outcomes of the $k$ dice with sum $n$, since multiplying Z-transforms corresponds to the discrete convolution of the sequence of counts. Setting $z=1$ adds up the counts of all sums, giving \eqref{eq:EE26BTECH11218-cb-dice-count}. A number is a multiple of $a$ and $b$ iff it is a multiple of $\operatorname{lcm}\brak{a,b}$, which gives \eqref{eq:EE26BTECH11218-cb-lcm}.
 
 \item (Incircle of a Triangle) Let $a,b,c$ be the lengths of the sides $BC$, $CA$, $AB$ opposite the vertices $\vec{A},\vec{B},\vec{C}$ respectively, $s=\frac{a+b+c}{2}$, and let $\mathcal{A}$ be the area. The incentre $\vec{I}$ (the centre of the inscribed circle) and the inradius $r$ are
 \begin{align}
@@ -124,17 +124,6 @@ r\brak{\alpha} = f\brak{\alpha}
 \label{eq:EE26BTECH11218-cb-remainder}
 \end{align}
 \solution Writing the coefficients of $q$ and $r$ as unknowns, \eqref{eq:EE26BTECH11218-cb-division} is a linear system (a convolution matrix acting on the coefficients of $q$, plus the coefficients of $r$) with a unique solution. Substituting $x=\alpha$ with $g\brak{\alpha}=0$ gives \eqref{eq:EE26BTECH11218-cb-remainder}. If $\deg g = 2$ with distinct roots $\alpha_1,\alpha_2$, then $r\brak{x}=r_1x+r_0$ is the line through $\brak{\alpha_i, f\brak{\alpha_i}}$.
-
-\item (Volume Flow Rate) If a fluid moves with uniform speed $v$ normal to a cross-section $S$, the volume flow rate and the volume in time $T$ are
-\begin{align}
-Q = \iint_{S} v\,dA = v\pi R^2, \qquad V = \int_{0}^{T} Q\,dt = QT
-\label{eq:EE26BTECH11218-cb-flux}
-\end{align}
-\solution For a circular cross-section of radius $R$, in polar coordinates
-\begin{align}
-\iint_S v\,dA = \int_0^{2\pi}\int_0^R v\rho\,d\rho\,d\theta = v\cdot 2\pi\cdot\frac{R^2}{2} = v\pi R^2
-\end{align}
-Also, $1\text{ L} = 1000\text{ cm}^3$.
 
 \item (Angle of Depression and Uniform Motion) An observer at height $h$ above the ground sees an object at horizontal distance $x$ at an angle of depression $\theta$, where
 \begin{align}

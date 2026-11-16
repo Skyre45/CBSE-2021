@@ -1,28 +1,21 @@
-# Three cards from a deck of 52, no replacement: hypergeometric PMF
-# Adapted from {https://github.com/gadepall/probability} (binomial/binomial.py)
+# Three cards from a deck of 52, no replacement: hypergeometric PMF against the C simulation
 import os
+from math import comb
 import numpy as np
 import matplotlib.pyplot as plt
-FIG = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "figs")
-from math import comb
-from fractions import Fraction
-from scipy.stats import hypergeom
 
-M, K, n = 52, 26, 3                               # deck, red cards, draws
-k = np.arange(n + 1)
-pmf = hypergeom.pmf(k, M, K, n)
-print("PMF:", pmf)
-print("P(2 red, 1 black) =", pmf[2], " C(26,2)C(26,1)/C(52,3) =", Fraction(comb(26, 2) * comb(26, 1), comb(52, 3)))
+DIR = os.path.dirname(os.path.abspath(__file__))
+FIG = os.path.join(DIR, "..", "figs")
 
-rng = np.random.default_rng(0)
-deck = np.array([1] * K + [0] * (M - K))
-simlen = 100000
-idx = rng.random((simlen, M)).argsort(axis=1)[:, :n]      # n cards without replacement
-sim = np.bincount(deck[idx].sum(axis=1), minlength=n + 1) / simlen
-print("simulation:", sim)
+k = np.arange(4)
+pmf = np.array([comb(26, j) * comb(26, 3 - j) / comb(52, 3) for j in k])   # p_X(k)
+print("PMF:", pmf, " p_X(2) =", pmf[2], " 13/34 =", 13 / 34)
 
-plt.stem(k, sim, markerfmt="o", linefmt="C0-", label="Simulation")
+sim = np.loadtxt(os.path.join(DIR, "cbXIIq15.dat"))
+print("simulation:", sim[:, 1])
+
+plt.stem(k, sim[:, 1], markerfmt="o", linefmt="C0-", label="Simulation (C)")
 plt.stem(k, pmf, markerfmt="x", linefmt="C3--", label="Analysis")
-plt.xticks(k); plt.xlabel("$k$ (red cards)"); plt.ylabel("$p_K(k)$")
+plt.xticks(k); plt.xlabel("$k$ (red cards)"); plt.ylabel("$p_X(k)$")
 plt.legend(); plt.grid(True, linestyle="--", alpha=0.6)
 plt.savefig(os.path.join(FIG, "cbXIIq15.pdf"), bbox_inches="tight")

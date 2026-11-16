@@ -1,7 +1,7 @@
 \begin{enumerate}[label=\thesubsection.\arabic*, ref=\thesubsection.\theenumi,itemsep=1.5em]
 
 \item $PQ$ is a tangent to a circle with centre $O$ at the point $P$ on the circle. If $\triangle OPQ$ is an isosceles triangle, then find $\angle OQP$.
-\hfill (CBSE~X~2021)
+\hfill (10,2021)
 \\
 \solution
 From \eqref{eq:EE26BTECH11218-cb-tan-radius}, the direction $\vec{m}=\vec{Q}-\vec{P}$ of the tangent satisfies
@@ -35,7 +35,7 @@ The following code verifies this in \figref{fig:EE26BTECH11218-cb_q6}.
     \label{fig:EE26BTECH11218-cb_q6}
 \end{figure}
 \item Two concentric circles have radii $10$ cm and $6$ cm. Find the length of the chord of the larger circle which touches the smaller circle.
-\hfill (CBSE~X~2021)
+\hfill (10,2021)
 \\
 \solution
 With the common centre at the origin, from \eqref{eq:EE26BTECH11218-cb-circle} the circles have
@@ -66,19 +66,24 @@ The following code verifies this in \figref{fig:EE26BTECH11218-cb_q7}.
     \label{fig:EE26BTECH11218-cb_q7}
 \end{figure}
 \item How many outcomes are possible when three dice are thrown together?
-\hfill (CBSE~X~2021)
+\hfill (10,2021)
 \\
 \solution
-For one die, the generating function of the outcomes is $x+x^2+\cdots+x^6$. For three dice, from \eqref{eq:EE26BTECH11218-cb-dice-count}, the number of outcomes with sum $n$ is the coefficient of $x^n$ in
+For one die, the Z-transform of the outcomes is $z^{-1}+z^{-2}+\cdots+z^{-6}$. For three dice, from \eqref{eq:EE26BTECH11218-cb-dice-count}, by the convolution property of the Z-transform, the number of outcomes with sum $n$ is the coefficient of $z^{-n}$ in the product:
 \begin{align}
-\brak{x+x^2+\cdots+x^6}^3 &= x^3 + 3x^4 + 6x^5 + 10x^6 + 15x^7 + 21x^8 \\
-&\quad + 25x^9 + 27x^{10} + \cdots + x^{18}
+\brak{z^{-1}+z^{-2}+\cdots+z^{-6}}^3 &= z^{-3} + 3z^{-4} + 6z^{-5} + 10z^{-6} + 15z^{-7} + 21z^{-8} \\
+&\quad + 25z^{-9} + 27z^{-10} + \cdots + z^{-18}
 \end{align}
-and setting $x=1$ adds the counts of all sums,
+Evaluating at $z=1$ adds the coefficients of all sums, giving the total number of outcomes:
 \begin{align}
 \brak{1+1+\cdots+1}^3 = 6^3 = 216
 \end{align}
-The following code verifies this in \figref{fig:EE26BTECH11218-cb_q16}.
+
+The following C program simulates one million throws of three dice and counts the outcomes with each sum:
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXq16.c}@*)
+\end{lstlisting}
+The Python program computes the exact counts from the Z-transform and plots both as stem plots in \figref{fig:EE26BTECH11218-cb_q16}:
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXq16.py}@*)
 \end{lstlisting}
@@ -89,7 +94,7 @@ The following code verifies this in \figref{fig:EE26BTECH11218-cb_q16}.
     \label{fig:EE26BTECH11218-cb_q16}
 \end{figure}
 \item The residents of a housing society decided to build two straight paths in the central park. Taking one corner of the park as origin and two mutually perpendicular lines as the axes, the paths are represented by $2x-3y=5$ and $-6x+9y=7$.
-\hfill (CBSE~X~2021)
+\hfill (10,2021)
 
 \begin{enumerate}[label=(\roman*), itemsep=0pt]
 \item The two paths are
@@ -170,7 +175,7 @@ The following code verifies the results in \figref{fig:EE26BTECH11218-cb_q17}.
     \label{fig:EE26BTECH11218-cb_q17}
 \end{figure}
 \item Twenty identical cards are numbered $1$ to $20$ and placed in a box. One card is drawn at random.
-\hfill (CBSE~X~2021)
+\hfill (10,2021)
 
 \begin{enumerate}[label=(\roman*), itemsep=0pt]
 \item The probability that the number on the card is an odd prime number is
@@ -220,34 +225,41 @@ The following code verifies the results in \figref{fig:EE26BTECH11218-cb_q17}.
 \end{enumerate}
 \end{enumerate}
 \solution
-Let $\Omega = \cbrak{1,2,\dots,20}$ with $p_X\brak{n} = \frac{1}{20}$ and use \eqref{eq:EE26BTECH11218-cb-prob}. The primes in $\Omega$ are
+Let $X$ be the number on the card drawn. It takes values in $\cbrak{1,2,\dots,20}$ with the PMF $p_X\brak{n}=\pr{X=n}=\frac{1}{20}$. For an event $E$, define the indicator random variable $Y_E$ by $Y_E=1$ if $X\in E$ and $Y_E=0$ otherwise. From \eqref{eq:EE26BTECH11218-cb-prob},
 \begin{align}
-\cbrak{2,3,5,7,11,13,17,19}, \quad \abs{\cbrak{\text{primes}}} = 8
+\pr{E} = \pr{Y_E=1} = \sum_{n\in E}p_X\brak{n} = \frac{\abs{E}}{20}
 \end{align}
-\textbf{(i)} Removing $2$ leaves $7$ odd primes, so $\pr{\text{odd prime}} = \frac{7}{20}$: option (d).
+The primes up to $20$ are $2,3,5,7,11,13,17,19$, so there are $8$ of them.
 
-\textbf{(ii)} Neither $1$ nor a prime is composite, so $\abs{\cbrak{\text{composite}}} = 20-1-8 = 11$ and $\pr{\text{composite}}=\frac{11}{20}$: option (a).
+\textbf{(i)} Let $Y_1=1$ if $X$ is an odd prime. The odd primes are $3,5,7,11,13,17,19$, so $\pr{Y_1=1}=7\cdot\frac{1}{20}=\frac{7}{20}$: option (d).
 
-\textbf{(iii)} A multiple of $3$, $6$ and $9$ is a multiple of $\operatorname{lcm}\brak{3,6,9}=18$. From \eqref{eq:EE26BTECH11218-cb-lcm}, the count is $\left\lfloor\frac{20}{18}\right\rfloor = 1$, so the probability is $\frac{1}{20}$: option (a).
+\textbf{(ii)} Let $Y_2=1$ if $X$ is composite. Neither $1$ nor a prime is composite, so there are $20-1-8=11$ such values and $\pr{Y_2=1}=\frac{11}{20}$: option (a).
 
-\textbf{(iv)} $\operatorname{lcm}\brak{3,7}=21>20$, so the count is $\left\lfloor\frac{20}{21}\right\rfloor = 0$ and the probability is $0$: option (c).
+\textbf{(iii)} Let $Y_3=1$ if $X$ is a multiple of $3$, $6$ and $9$, that is, of $\operatorname{lcm}\brak{3,6,9}=18$. From \eqref{eq:EE26BTECH11218-cb-lcm} the only such value is $X=18$, so $\pr{Y_3=1}=p_X\brak{18}=\frac{1}{20}$: option (a).
 
-\textbf{(v)} Let $E$ be the event ``even number'' and $S$ the event ``prime''. Then $\pr{E}=\frac{10}{20}$ and $S\cap E=\cbrak{2}$, so
+\textbf{(iv)} Let $Y_4=1$ if $X$ is a multiple of $3$ and $7$. Since $\operatorname{lcm}\brak{3,7}=21>20$, no value qualifies and $\pr{Y_4=1}=0$: option (c).
+
+\textbf{(v)} Let $E$ be the event that $X$ is even, with $\pr{E}=\frac{10}{20}$. Removing the odd cards means the card drawn has the conditional PMF
 \begin{align}
-\pr{S\mid E} = \frac{\pr{S\cap E}}{\pr{E}} = \frac{1/20}{1/2} = \frac{1}{10}
+p_{X\mid E}\brak{n} = \frac{p_X\brak{n}}{\pr{E}} = \frac{1/20}{1/2} = \frac{1}{10}, \qquad n=2,4,\dots,20
 \end{align}
-option (b). The following code verifies these in \figref{fig:EE26BTECH11218-cb_q20}.
+The only even prime is $2$, so $\pr{X \text{ is prime}\mid E}=p_{X\mid E}\brak{2}=\frac{1}{10}$: option (b).
+The following C program draws $X$ one million times and estimates $\pr{Y=1}$ for the indicator variables of parts (i) to (iv), and the conditional probability in part (v):
+\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
+(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXq20.c}@*)
+\end{lstlisting}
+The Python program compares them with the exact values from the PMF as stem plots in \figref{fig:EE26BTECH11218-cb_q20}:
 \begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
 (*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXq20.py}@*)
 \end{lstlisting}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.70\linewidth]{figs/cbXq20.pdf}
-    \caption{PMF of the card drawn, grouped as prime, composite and neither}
+    \caption{Probabilities of the events in parts (i) to (v): Simulation vs Analysis}
     \label{fig:EE26BTECH11218-cb_q20}
 \end{figure}
 \item Find the value of $k$ for which the system of equations $x+2y=5$ and $3x+ky+15=0$ has no solution.
-\hfill (CBSE~X~2021)
+\hfill (10,2021)
 \\
 \solution
 From \eqref{eq:EE26BTECH11218-cb-linsys},
@@ -273,7 +285,7 @@ This agrees with $\frac{1}{3}=\frac{2}{k}\ne\frac{-5}{15}$ at $k=6$. The followi
     \label{fig:EE26BTECH11218-cb_q22}
 \end{figure}
 \item $ABC$ is a right triangle, right-angled at $B$, with $BC=6$ cm and $AB=8$ cm. A circle with centre $O$ and radius $r$ cm is inscribed in $\triangle ABC$. Find the value of $r$.
-\hfill (CBSE~X~2021)
+\hfill (10,2021)
 \\
 \solution
 Place $B$ at the origin, with $BC$ along the $x$-axis and $BA$ along the $y$-axis. Then
@@ -320,7 +332,7 @@ The points of contact are the feet of the perpendiculars from $\vec{I}$ to the s
     \label{fig:EE26BTECH11218-cb_q25}
 \end{figure}
 \item Divide the polynomial $f\brak{x} = 5x^3+10x^2-30x-15$ by the polynomial $g\brak{x} = x^2+1+x$ and hence find the quotient and the remainder.
-\hfill (CBSE~X~2021)
+\hfill (10,2021)
 \\
 \solution
 From \eqref{eq:EE26BTECH11218-cb-division}, let $q\brak{x}=q_1x+q_0$ and $r\brak{x}=r_1x+r_0$. Then
@@ -350,31 +362,8 @@ The following code verifies this in \figref{fig:EE26BTECH11218-cb_q27}.
     \caption{$f\brak{x}$ and $q\brak{x}g\brak{x}+r\brak{x}$ coincide}
     \label{fig:EE26BTECH11218-cb_q27}
 \end{figure}
-\item Water is being pumped out through a circular pipe whose internal diameter is $8$ cm. If the rate of flow of water is $80$ cm/s, how many litres of water are pumped out through this pipe in one hour?
-\hfill (CBSE~X~2021)
-\\
-\solution
-Here $R=4$ cm, $v=80$ cm/s and $T=3600$ s. From \eqref{eq:EE26BTECH11218-cb-flux},
-\begin{align}
-Q &= \int_0^{2\pi}\int_0^4 80\rho\,d\rho\,d\theta = 80\cdot2\pi\cdot8 = 1280\pi \text{ cm}^3/\text{s} \\
-V &= \int_0^{3600} Q\,dt = 1280\pi\times3600 = 4608000\pi \text{ cm}^3
-\end{align}
-Since $1\text{ L}=1000\text{ cm}^3$,
-\begin{align}
-V = 4608\pi \text{ L} \approx 14476.46 \text{ L}
-\end{align}
-(with $\pi=\frac{22}{7}$, $V \approx 14482.29$ L). The following code verifies this in \figref{fig:EE26BTECH11218-cb_q34}.
-\begin{lstlisting}[frame=single, basicstyle=\rmfamily, escapeinside={(*@}{@*)}]
-(*@\makebox[\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax][c]{codes/cbXq34.py}@*)
-\end{lstlisting}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.70\linewidth]{figs/cbXq34.pdf}
-    \caption{Volume pumped out versus time}
-    \label{fig:EE26BTECH11218-cb_q34}
-\end{figure}
 \item A man on the top of a vertical tower observes a car moving at a uniform speed coming directly towards it. If it takes $18$ minutes for the angle of depression to change from $30^{\circ}$ to $60^{\circ}$, how soon after this will the car reach the tower?
-\hfill (CBSE~X~2021)
+\hfill (10,2021)
 \\
 \solution
 Let the tower have height $h$ and let $x\brak{t}$ be the horizontal distance of the car from its foot, with $t=0$ at the first observation. From \eqref{eq:EE26BTECH11218-cb-depression},
@@ -384,7 +373,11 @@ x\brak{0} = h\cot30^{\circ} = \sqrt{3}h, \qquad x\brak{18} = h\cot60^{\circ} = \
 Using \eqref{eq:EE26BTECH11218-cb-uniform} and \eqref{eq:EE26BTECH11218-cb-uniform-sys} with $t_1=0$, $t_2=18$. The first row says $x_0=x\brak{0}$ and the second says $x_0-18v=x\brak{18}$, so the unknowns are the starting distance $x_0$ and the speed $v$ (distance per minute):
 \begin{align}
 \myvec{1 & 0 \\ 1 & -18}\myvec{x_0 \\ v} = \myvec{\sqrt{3}h \\ \frac{h}{\sqrt{3}}}
-\implies x_0 = \sqrt{3}h, \quad v = \frac{1}{18}\brak{\sqrt{3}-\frac{1}{\sqrt{3}}}h = \frac{h}{9\sqrt{3}}
+\end{align}
+Gauss elimination with $R_2\to R_2-R_1$ gives
+\begin{align}
+\augvec{2}{1}{1 & 0 & \sqrt{3}h \\ 1 & -18 & \frac{h}{\sqrt{3}}} &\longrightarrow \augvec{2}{1}{1 & 0 & \sqrt{3}h \\ 0 & -18 & -\frac{2h}{\sqrt{3}}} \\
+&\implies x_0 = \sqrt{3}h, \quad v = \frac{2h}{18\sqrt{3}} = \frac{h}{9\sqrt{3}}
 \end{align}
 The car reaches the tower when $x\brak{t}=0$, that is after a further time
 \begin{align}

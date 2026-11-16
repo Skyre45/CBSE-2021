@@ -19,7 +19,7 @@ for l in sorted(lam.real):
     print("lambda = %+.0f : normal %s, constant %.0f, distance from origin = %.6f" % (l, n, e, abs(e) / LA.norm(n)))
     planes.append((n, e))
 
-d = np.cross(n1, n2)                                # direction of the line of intersection
+d = LA.svd(np.vstack((n1, n2)))[2][-1]              # null vector of [n1; n2]: direction of the line of intersection
 p0 = LA.lstsq(np.vstack((n1, n2)), -np.array([e1, e2]), rcond=None)[0]
 print("line direction:", d, " point:", p0)
 for n, e in planes:

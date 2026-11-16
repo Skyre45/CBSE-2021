@@ -122,3 +122,20 @@ def polyvalm(f, A):
         R = R @ A + c * np.eye(A.shape[0])
     return R
 
+
+# Trapezoidal rule written as a difference equation:
+#   A_0 = 0,  A_{k+1} - A_k = (h/2) (f_k + f_{k+1});  A_n approximates the integral.
+def trapezoid(f_vals, h):
+    A = np.zeros(len(f_vals))
+    for k in range(len(f_vals) - 1):
+        A[k + 1] = A[k] + 0.5 * h * (f_vals[k] + f_vals[k + 1])
+    return A
+
+# Euler forward-difference method for y' = F(x, y):  y_{k+1} = y_k + h F(x_k, y_k)
+def euler(F, x0, y0, h, n):
+    x = x0 + h * np.arange(n + 1)
+    y = np.zeros(n + 1)
+    y[0] = y0
+    for k in range(n):
+        y[k + 1] = y[k] + h * F(x[k], y[k])
+    return x, y

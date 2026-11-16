@@ -5,12 +5,17 @@
 p_{X,Y}\brak{x,y} = p_X\brak{x}p_Y\brak{y}, \qquad p_{X+Y}\brak{n} = \sum_{k}p_X\brak{k}p_Y\brak{n-k}
 \label{eq:EE26BTECH11218-cb12-conv}
 \end{align}
+In terms of the Z-transform $P_X\brak{z}=\sum_np_X\brak{n}z^{-n}$, convolution becomes multiplication,
+\begin{align}
+P_{X+Y}\brak{z} = P_X\brak{z}P_Y\brak{z}
+\label{eq:EE26BTECH11218-cb12-ztrans}
+\end{align}
 and for independent events $E_i$ with $\pr{E_i}=p_i$,
 \begin{align}
 \pr{\text{at least one } E_i \text{ occurs}} = 1-\prod_i\brak{1-p_i}
 \label{eq:EE26BTECH11218-cb12-atleast}
 \end{align}
-\solution Independence of the events $\cbrak{X=x}$ and $\cbrak{Y=y}$ factorises the joint PMF. The event $\cbrak{X+Y=n}$ is the disjoint union of $\cbrak{X=k,\,Y=n-k}$ over $k$, which gives the convolution. At least one event occurs iff the sum of the indicators is nonzero, and $\pr{\text{none}}=\prod_i\brak{1-p_i}$.
+\solution Independence of the events $\cbrak{X=x}$ and $\cbrak{Y=y}$ factorises the joint PMF. The event $\cbrak{X+Y=n}$ is the disjoint union of $\cbrak{X=k,\,Y=n-k}$ over $k$, which gives the convolution. Multiplying by $z^{-n}$ and summing over $n$, with $n=k+m$, gives $\sum_n z^{-n}\sum_kp_X\brak{k}p_Y\brak{n-k}=\sum_kp_X\brak{k}z^{-k}\sum_mp_Y\brak{m}z^{-m}$, which is \eqref{eq:EE26BTECH11218-cb12-ztrans}. At least one event occurs iff the sum of the indicators is nonzero, and $\pr{\text{none}}=\prod_i\brak{1-p_i}$.
 
 \item (Binomial Distribution) The number $X$ of successes in $n$ independent trials with success probability $p$ has
 \begin{align}
@@ -18,7 +23,7 @@ p_X\brak{k} &= \binom{n}{k}p^k\brak{1-p}^{n-k}, \quad k=0,1,\dots,n \nonumber \\
 E\sbrak{X} &= np, \quad \mathrm{var}\brak{X}=np\brak{1-p}
 \label{eq:EE26BTECH11218-cb12-binom}
 \end{align}
-\solution One trial has the PMF $\brak{1-p,\ p}$, whose generating function is $1-p+px$. By \eqref{eq:EE26BTECH11218-cb12-conv} the PMF of the sum of $n$ trials is the $n$-fold convolution, that is, the coefficients of $\brak{1-p+px}^n$, which are $\binom{n}{k}p^k\brak{1-p}^{n-k}$ by the binomial theorem. The mean and variance add over the independent trials.
+\solution One trial has the PMF $\brak{1-p,\ p}$, whose Z-transform is $\brak{1-p}+pz^{-1}$. By \eqref{eq:EE26BTECH11218-cb12-conv} the PMF of the sum of $n$ trials is the $n$-fold convolution, corresponding to the coefficients of the Z-transform product $\brak{1-p+pz^{-1}}^n$, which are $\binom{n}{k}p^k\brak{1-p}^{n-k}$ by the binomial theorem. The mean and variance add over the independent trials.
 
 \item (Hypergeometric Distribution) Draw $n$ items without replacement from $M$ items, of which $K$ are of one kind. The number $X$ of items of that kind has
 \begin{align}
@@ -46,18 +51,6 @@ A condition such as $x=5$ means that coordinate is constant, so that component o
 \end{align}
 \solution In the symmetric form, the point $\brak{x_0+\kappa d_1,\ y_0+\kappa d_2,\ z_0+\kappa d_3}$ moves along $\vec{m}$ as $\kappa$ varies, so $\vec{m}$ is the direction. A constant coordinate does not change with $\kappa$, so the corresponding component is $0$.
 
-\item (Cross Product, Area and Collinearity) $\norm{\vec{u}\times\vec{v}}$ is the area of the parallelogram on $\vec{u},\vec{v}$, and $\vec{u}\times\vec{v}=\vec{0}$ iff $\vec{u}\parallel\vec{v}$. For three points,
-\begin{align}
-\brak{\vec{b}-\vec{a}}\times\brak{\vec{c}-\vec{a}} = \vec{b}\times\vec{c}+\vec{c}\times\vec{a}+\vec{a}\times\vec{b}
-\label{eq:EE26BTECH11218-cb12-cross}
-\end{align}
-The area of the triangle is half the norm of this vector, and the points are collinear iff it is $\vec{0}$.
-\solution By bilinearity,
-\begin{align}
-\brak{\vec{b}-\vec{a}}\times\brak{\vec{c}-\vec{a}} = \vec{b}\times\vec{c} - \vec{b}\times\vec{a} - \vec{a}\times\vec{c} + \vec{a}\times\vec{a}
-\end{align}
-and $\vec{a}\times\vec{a}=\vec{0}$, $-\vec{b}\times\vec{a}=\vec{a}\times\vec{b}$, $-\vec{a}\times\vec{c}=\vec{c}\times\vec{a}$.
-
 \item (Determinants: Line and Area) The line through $\brak{x_1,y_1}$ and $\brak{x_2,y_2}$, and the area of a triangle with vertices $\brak{x_i,y_i}$, are, respectively,
 \begin{align}
 \mydet{x & y & 1 \\ x_1 & y_1 & 1 \\ x_2 & y_2 & 1} = 0, \qquad
@@ -75,13 +68,8 @@ which is the signed area of the parallelogram on $\vec{x}_1-\vec{x}_3$ and $\vec
 d = \min_{\vec{z}}\norm{\vec{M}\vec{z}-\vec{b}}, \quad \vec{M}^{\top}\vec{M}\vec{z} = \vec{M}^{\top}\vec{b}, \quad \vec{z}=\myvec{s \\ -t}
 \label{eq:EE26BTECH11218-cb12-skew}
 \end{align}
-which is equivalent to
-\begin{align}
-d = \frac{\abs{\vec{b}^{\top}\brak{\vec{m}_1\times\vec{m}_2}}}{\norm{\vec{m}_1\times\vec{m}_2}}
-\label{eq:EE26BTECH11218-cb12-skew-cross}
-\end{align}
-The lines intersect iff $d=0$.
-\solution The distance between $\vec{a}_1+s\vec{m}_1$ and $\vec{a}_2+t\vec{m}_2$ is $\norm{s\vec{m}_1-t\vec{m}_2-\vec{b}}=\norm{\vec{M}\vec{z}-\vec{b}}$. It is minimum when the residual is orthogonal to both columns of $\vec{M}$ (the normal equations). The residual is then perpendicular to $\vec{m}_1$ and $\vec{m}_2$, so it is along $\vec{m}_1\times\vec{m}_2$ and equals the projection of $\vec{b}$ on that direction, which is \eqref{eq:EE26BTECH11218-cb12-skew-cross}.
+The normal equations are a linear system, solved by Gauss elimination, and the lines intersect iff $d=0$.
+\solution The distance between $\vec{a}_1+s\vec{m}_1$ and $\vec{a}_2+t\vec{m}_2$ is $\norm{s\vec{m}_1-t\vec{m}_2-\vec{b}}=\norm{\vec{M}\vec{z}-\vec{b}}$. It is minimum when the residual $\vec{M}\vec{z}-\vec{b}$ is orthogonal to both columns of $\vec{M}$, that is, $\vec{M}^{\top}\brak{\vec{M}\vec{z}-\vec{b}}=\vec{0}$, which is the system of normal equations.
 
 \item (Planes through a Line of Intersection) The planes $\vec{n}_1^{\top}\vec{x}+e_1=0$ and $\vec{n}_2^{\top}\vec{x}+e_2=0$ meet in a line, and every plane through that line is
 \begin{align}
@@ -103,12 +91,22 @@ The distance of $\vec{n}^{\top}\vec{x}+e=0$ from the origin is
 and $\vec{A}$ is symmetric iff $\vec{K}=\vec{0}$.
 \solution $\vec{S}^{\top}=\vec{S}$, $\vec{K}^{\top}=-\vec{K}$ and $\vec{S}+\vec{K}=\vec{A}$. If $\vec{A}=\vec{A}^{\top}$, then $\vec{K}=\vec{0}$, and conversely.
 
-\item (Idempotent Matrices and Matrix Polynomials) Let $\vec{A}^2=\vec{A}$ and let $p$ be a polynomial. Dividing $p\brak{\lambda}=q\brak{\lambda}\brak{\lambda^2-\lambda}+r_1\lambda+r_0$,
+\item (Idempotent Matrices and Matrix Polynomials) If $\vec{A}^2=\vec{A}$, every eigenvalue of $\vec{A}$ is $0$ or $1$ and $\vec{A}$ is diagonalizable. Hence for a polynomial $p$,
 \begin{align}
-p\brak{\vec{A}} = r_1\vec{A}+r_0\vec{I}, \qquad r_0=p\brak{0}, \quad r_1=p\brak{1}-p\brak{0}
+p\brak{0}=p\brak{1}=c \implies p\brak{\vec{A}}=c\vec{I}
 \label{eq:EE26BTECH11218-cb12-idem}
 \end{align}
-\solution Since $\vec{A}^2-\vec{A}=\vec{0}$, the term $q\brak{\vec{A}}\brak{\vec{A}^2-\vec{A}}$ vanishes. Putting $\lambda=0$ and $\lambda=1$ (the roots of $\lambda^2-\lambda$) gives $p\brak{0}=r_0$ and $p\brak{1}=r_1+r_0$. Also, if $\vec{A}\vec{v}=\mu\vec{v}$ then $\mu^2=\mu$, so the eigenvalues of $\vec{A}$ are $0$ or $1$.
+\solution If $\vec{A}\vec{v}=\mu\vec{v}$ with $\vec{v}\ne\vec{0}$, then $\vec{A}^2\vec{v}=\mu^2\vec{v}$ and $\vec{A}^2\vec{v}=\vec{A}\vec{v}=\mu\vec{v}$, so $\brak{\mu^2-\mu}\vec{v}=\vec{0}$ and $\mu\in\cbrak{0,1}$. Since $\vec{A}\brak{\vec{A}-\vec{I}}=\vec{0}$, the minimal polynomial of $\vec{A}$ divides $\lambda\brak{\lambda-1}$, which has distinct roots, so $\vec{A}=\vec{V}\vec{D}\vec{V}^{-1}$ with $\vec{D}$ diagonal and entries $0$ or $1$. Then $p\brak{\vec{A}}=\vec{V}p\brak{\vec{D}}\vec{V}^{-1}$, whose diagonal entries are $p\brak{0}$ or $p\brak{1}$, and if both equal $c$ this is $c\vec{V}\vec{V}^{-1}=c\vec{I}$. (Equivalently, dividing $p\brak{\lambda}=q\brak{\lambda}\brak{\lambda^2-\lambda}+r_1\lambda+r_0$ gives $p\brak{\vec{A}}=r_1\vec{A}+r_0\vec{I}$ with $r_0=p\brak{0}$ and $r_1=p\brak{1}-p\brak{0}$, without diagonalizing.)
+
+\item (Relations as Boolean Matrices) On a finite set $\cbrak{x_1,\dots,x_n}$ let $M_{ij}=1$ iff $x_iRx_j$. Then
+\begin{align}
+\text{reflexive} &\iff M_{ii}=1\ \forall i \nonumber \\
+\text{symmetric} &\iff \vec{M}=\vec{M}^{\top} \nonumber \\
+\text{transitive} &\iff \brak{\vec{M}^2>0}\subseteq\brak{\vec{M}>0}
+\label{eq:EE26BTECH11218-cb12-relation}
+\end{align}
+If $L_{ik}=1$ when word $i$ contains letter $k$, then ``have a letter in common'' is $\vec{M}=\brak{\vec{L}\vec{L}^{\top}>0}$.
+\solution $\brak{\vec{M}^2}_{ik}=\sum_jM_{ij}M_{jk}$ counts the $j$ with $x_iRx_jRx_k$, so it is positive iff a two-step chain exists, and transitivity requires $x_iRx_k$ for every such chain. Also, $\brak{\vec{L}\vec{L}^{\top}}_{ij}=\sum_kL_{ik}L_{jk}$ is the number of common letters, and it is symmetric by construction.
 
 \item (Adjugate and Cayley-Hamilton) For a $2\times2$ matrix $\vec{A}$, the Cayley-Hamilton theorem states
 \begin{align}
@@ -129,13 +127,6 @@ and the adjugate satisfies
 \end{align}
 whenever the limit exists. With $x=\sin\theta$, a right triangle with hypotenuse $1$ gives $\tan\brak{\sin^{-1}x}=\frac{x}{\sqrt{1-x^2}}$ and $dx=\cos\theta\,d\theta$.
 
-\item (Integration by Parts) $\int u\,dv = uv-\int v\,du$, and
-\begin{align}
-\int e^x\brak{f\brak{x}+f'\brak{x}}dx = e^xf\brak{x}+c
-\label{eq:EE26BTECH11218-cb12-expf}
-\end{align}
-\solution With $u=f$ and $dv=e^xdx$, $\int e^xf\,dx = e^xf-\int e^xf'\,dx$. Adding $\int e^xf'\,dx$ to both sides gives \eqref{eq:EE26BTECH11218-cb12-expf}.
-
 \item (First-Order Linear ODE) The equation $\diff{y}{x}+P\brak{x}y=Q\brak{x}$ has the integrating factor
 \begin{align}
 \mu\brak{x} = e^{\int P\,dx}, \qquad \diff{}{x}\brak{\mu y} = \mu Q
@@ -150,10 +141,19 @@ A\brak{a} = \int_0^a2\sqrt{x}\,dx = \frac{4}{3}a^{3/2}
 \end{align}
 and the line $x=a$ divides the region into two equal parts iff $A\brak{a}=\frac{1}{2}A\brak{4}$.
 
-\item (Partial Fractions) A proper rational function with a repeated factor is
+\item (Trapezoidal Rule as a Difference Equation) To approximate $\int_a^bf\brak{x}dx$, let $h=\frac{b-a}{n}$ and $x_k=a+kh$. Then
 \begin{align}
-\frac{p\brak{x}}{\brak{x-r}^2\brak{x-s}} = \frac{A}{x-r}+\frac{B}{\brak{x-r}^2}+\frac{C}{x-s}
-\label{eq:EE26BTECH11218-cb12-partial}
+A_0=0, \qquad A_{k+1}-A_k = \frac{h}{2}\brak{f\brak{x_k}+f\brak{x_{k+1}}}, \qquad \int_a^bf\brak{x}dx \approx A_n
+\label{eq:EE26BTECH11218-cb12-trap}
 \end{align}
-where $A,B,C$ solve the linear system obtained by matching the coefficients of $p\brak{x}=A\brak{x-r}\brak{x-s}+B\brak{x-s}+C\brak{x-r}^2$. Then $\int\frac{dx}{x-r}=\ln\abs{x-r}$ and $\int\frac{dx}{\brak{x-r}^2}=-\frac{1}{x-r}$.
+The rule is exact when $f$ is linear, and for smooth $f$ the error is proportional to $h^2$.
+\solution Between $x_k$ and $x_{k+1}$ the area under the graph is approximated by a trapezoid with parallel sides $f\brak{x_k}$ and $f\brak{x_{k+1}}$ and width $h$, whose area is $\frac{h}{2}\brak{f\brak{x_k}+f\brak{x_{k+1}}}$. Adding the strips one at a time gives the difference equation. If $f$ is linear, the graph between the nodes is a straight line, so each trapezoid is exactly the area under the graph.
+
+\item (Euler Forward-Difference Method) For $\diff{y}{x}=F\brak{x,y}$ with $y\brak{x_0}=y_0$, let $x_k=x_0+kh$. Then
+\begin{align}
+y_{k+1} = y_k+hF\brak{x_k,y_k}
+\label{eq:EE26BTECH11218-cb12-euler}
+\end{align}
+and for a smooth solution the error at a fixed $x$ is proportional to $h$.
+\solution Near $x_k$ the solution is close to its tangent line, so $y\brak{x_k+h}\approx y\brak{x_k}+h\,y'\brak{x_k}=y_k+hF\brak{x_k,y_k}$.
 \end{enumerate}

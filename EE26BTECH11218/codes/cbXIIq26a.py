@@ -1,27 +1,21 @@
-# Number of even tickets in two draws without replacement from 1..19: hypergeometric PMF
+# Number of even tickets in two draws without replacement from 1..19: hypergeometric PMF against the C simulation
 import os
+from math import comb
 import numpy as np
 import matplotlib.pyplot as plt
-FIG = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "figs")
-from fractions import Fraction
-from math import comb
-from scipy.stats import hypergeom
 
-M, K, n = 19, 9, 2                                # tickets, even tickets, draws
-k = np.arange(n + 1)
-pmf = hypergeom.pmf(k, M, K, n)
-exact = [Fraction(comb(K, j) * comb(M - K, n - j), comb(M, n)) for j in k]
-print("PMF    :", pmf)
-print("exact  :", exact)
-print("mean   :", (k * pmf).sum(), " nK/M =", n * K / M)
+DIR = os.path.dirname(os.path.abspath(__file__))
+FIG = os.path.join(DIR, "..", "figs")
 
-rng = np.random.default_rng(0)
-simlen = 200000
-idx = rng.random((simlen, M)).argsort(axis=1)[:, :n] + 1    # ticket numbers drawn
-sim = np.bincount((idx % 2 == 0).sum(axis=1), minlength=n + 1) / simlen
-print("simulation:", sim)
+k = np.arange(3)
+pmf = np.array([comb(9, j) * comb(10, 2 - j) / comb(19, 2) for j in k])    # p_X(k)
+print("PMF    :", pmf, " = [5/19, 10/19, 4/19] =", np.array([5, 10, 4]) / 19)
+print("mean   :", (k * pmf).sum(), " 18/19 =", 18 / 19)
 
-plt.stem(k, sim, markerfmt="o", linefmt="C0-", label="Simulation")
+sim = np.loadtxt(os.path.join(DIR, "cbXIIq26a.dat"))
+print("simulation:", sim[:, 1])
+
+plt.stem(k, sim[:, 1], markerfmt="o", linefmt="C0-", label="Simulation (C)")
 plt.stem(k, pmf, markerfmt="x", linefmt="C3--", label="Analysis")
 plt.xticks(k); plt.xlabel("$k$ (even numbers)"); plt.ylabel("$p_X(k)$")
 plt.legend(); plt.grid(True, linestyle="--", alpha=0.6)
